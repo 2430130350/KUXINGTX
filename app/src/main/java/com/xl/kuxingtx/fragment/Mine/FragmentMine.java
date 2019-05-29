@@ -50,7 +50,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
                 String account=ed1.getText().toString();
                 String pwd=ed2.getText().toString();
                 Log.e("","我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
-                Log.e("","我他妈不要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
+                Log.e("","我他妈不要上 天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
                 //对model层的接口进行调用
             }
         });
