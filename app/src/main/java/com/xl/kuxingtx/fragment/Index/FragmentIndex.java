@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.amap.api.maps2d.MapView;
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 
@@ -16,17 +17,23 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.Map;
+
 @ContentView(R.layout.fragment_fragment_index)//加载的xml文件
 public class FragmentIndex extends Fragment implements View.OnClickListener {
     @ViewInject(R.id.home_city)
     public TextView home_city;
+    public MapView mMapView = null;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewUtils.inject(getActivity());
         View view = x.view().inject(this, inflater, container);
-        home_city=view.findViewById(R.id.home_city);
+        home_city = view.findViewById(R.id.home_city);
         home_city.setOnClickListener(this);
+        mMapView = (MapView)view.findViewById(R.id.map);
+        //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
+        mMapView.onCreate(savedInstanceState);
         return view;
     }
 
