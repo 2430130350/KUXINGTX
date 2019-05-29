@@ -6,6 +6,7 @@ import org.xutils.x;
 
 //初始化
 public class MyApplication extends Application {
+    public static String weburi_login = "http://10.120.175.14:8000/login/";
     @Override
     public void onCreate() {
         super.onCreate();
