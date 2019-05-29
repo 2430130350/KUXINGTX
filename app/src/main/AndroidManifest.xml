@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainV2.MainV2Activity">
 
-
         </activity>
         <activity android:name=".activity.Guide.GuideActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
