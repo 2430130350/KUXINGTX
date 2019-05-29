@@ -15,11 +15,11 @@ import com.xl.kuxingtx.R;
 
 import org.xutils.x;
 
-public class FragmentInfo extends Fragment implements View.OnClickListener{
+public class FragmentInfo extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine, null);
         x.view().inject(getActivity());
         return view;
     }
@@ -28,8 +28,8 @@ public class FragmentInfo extends Fragment implements View.OnClickListener{
     @Override
     public void setMenuVisibility(boolean menuVisible) {
         super.setMenuVisibility(menuVisible);
-        if(this.getView()!=null){
-            this.getView().setVisibility(menuVisible?View.VISIBLE:View.GONE);
+        if (this.getView() != null) {
+            this.getView().setVisibility(menuVisible ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -46,5 +46,6 @@ public class FragmentInfo extends Fragment implements View.OnClickListener{
                 break;
         }*/
     }
+}
 
 
