@@ -1,7 +1,5 @@
-package com.xl.kuxingtx.activity.MainV2;
+package com.xl.kuxingtx.fragment.Note;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,13 +15,13 @@ import com.xl.kuxingtx.R;
 import org.xutils.view.annotation.ViewInject;
 
 
-public class FragmentMine extends Fragment implements  View.OnClickListener{
+public class FragmentNote extends Fragment implements View.OnClickListener{
     @ViewInject(R.id.home_city)
     public TextView home_city;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
+        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_note,null);
         ViewUtils.inject(getActivity());
         home_city=view.findViewById(R.id.home_city);
         home_city.setOnClickListener(this);

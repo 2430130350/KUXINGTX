@@ -5,8 +5,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -15,7 +13,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.xl.kuxingtx.R;
-import com.lidroid.xutils.ViewUtils;
+import com.xl.kuxingtx.fragment.Around.FragmentAround;
+import com.xl.kuxingtx.fragment.Index.FragmentIndex;
+import com.xl.kuxingtx.fragment.Mine.FragmentMine;
+import com.xl.kuxingtx.fragment.Note.FragmentNote;
 import com.xl.kuxingtx.inter.MainV2Mvp;
 
 import org.xutils.view.annotation.ViewInject;
