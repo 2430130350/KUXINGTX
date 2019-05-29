@@ -13,14 +13,17 @@ import android.view.ViewGroup;
 
 import com.xl.kuxingtx.R;
 
+import org.xutils.view.annotation.ContentView;
 import org.xutils.x;
 
+@ContentView(R.layout.fragment_fragment_info)//加载的xml文件
 public class FragmentInfo extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine, null);
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_info, null);
         x.view().inject(getActivity());
+        View view = x.view().inject(this, inflater, container);
         return view;
     }
 
