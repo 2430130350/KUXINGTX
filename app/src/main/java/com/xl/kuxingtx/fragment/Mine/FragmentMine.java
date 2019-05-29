@@ -17,6 +17,7 @@ import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.inter.FMineMvp;
 
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 
 public class FragmentMine extends Fragment implements  View.OnClickListener, FMineMvp.View {
@@ -41,7 +42,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
-        ViewUtils.inject(getActivity());
+        x.view().inject(getActivity());
 
 
         //登录的监听事件
