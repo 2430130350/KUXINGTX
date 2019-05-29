@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
@@ -23,20 +22,24 @@ import org.xutils.x;
 public class FragmentMine extends Fragment implements  View.OnClickListener, FMineMvp.View {
     private FMineMvp.Presenter minePresenter = new MinePresenter(this);
     //注:这是账号
-    @ViewInject(R.id.editText2)
+    @ViewInject(R.id.editAccount)
     private EditText ed1;
 
     //注:这是密码
-    @ViewInject(R.id.editText)
+    @ViewInject(R.id.editPassword)
     private EditText ed2;
 
     //登录的按钮
-    @ViewInject(R.id.button6)
+    @ViewInject(R.id.buttonLogin)
     private Button btn1;
 
     //忘记密码的按钮
-    @ViewInject(R.id.button4)
+    @ViewInject(R.id.buttonForget)
     private Button btn2;
+
+    //忘记密码的按钮
+    @ViewInject(R.id.buttonSign)
+    private Button btn3;
 
     @Nullable
     @Override
@@ -52,7 +55,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
                 String account=ed1.getText().toString();
                 String pwd=ed2.getText().toString();
                 Log.e("","我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
-                Log.e("","我他妈不要上 天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
+                Log.e("","我他妈不要上 天！！！我他妈不要上天！！！我他妈不要上天！！！我他妈不要上天！！！我他妈不要上天！！！+pwd");
                 //对model层的接口进行调用
             }
         });
