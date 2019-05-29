@@ -28,6 +28,8 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         ViewUtils.inject(getActivity());
         home_city=view.findViewById(R.id.home_city);
         home_city.setOnClickListener(this);
+
+        minePresenter.login("user1", "123");
         return view;
     }
 
@@ -53,4 +55,6 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
                 break;
         }*/
     }
+
+
 }
