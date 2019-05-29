@@ -11,13 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.inter.FMineMvp;
 
+import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-
+@ContentView(R.layout.fragment_fragment_mine)//加载的xml文件
 public class FragmentMine extends Fragment implements  View.OnClickListener, FMineMvp.View {
     private FMineMvp.Presenter minePresenter = new MinePresenter(this);
     //注:这是账号
@@ -43,9 +45,9 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
-        x.view().inject(getActivity());
-
+        //View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
+        ViewUtils.inject(getActivity());
+        View view = x.view().inject(this, inflater, container);
 
         //登录的监听事件
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,6 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         });
         return view;
     }
-
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {

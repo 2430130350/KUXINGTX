@@ -12,16 +12,19 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 
+import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
+@ContentView(R.layout.fragment_fragment_index)//加载的xml文件
 public class FragmentIndex extends Fragment implements View.OnClickListener {
     @ViewInject(R.id.home_city)
     public TextView home_city;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_index,null);
         ViewUtils.inject(getActivity());
+        View view = x.view().inject(this, inflater, container);
         home_city=view.findViewById(R.id.home_city);
         home_city.setOnClickListener(this);
         return view;
