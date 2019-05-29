@@ -43,6 +43,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         View view=LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
         ViewUtils.inject(getActivity());
 
+
         //登录的监听事件
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
