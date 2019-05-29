@@ -111,11 +111,9 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             @Override
             public Fragment getItem(int position) {
                 Fragment fragment=null;
-
                 switch (position){
                     case 0://团购
                         fragment=new FragmentIndex();
-
                         break;
                     case 1://附近
                         fragment=new FragmentNote();

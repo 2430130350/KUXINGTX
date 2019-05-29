@@ -20,7 +20,7 @@ public class MineModel implements FMineMvp.Model {
 
 
     public void loginPost(final UserInfo userInfo){
-        RequestParams params = new RequestParams("http://192.168.137.1:8000/login/");
+        RequestParams params = new RequestParams("http://10.120.175.14:8000/login/");
         params.addBodyParameter("username",userInfo.getUserName());
         params.addBodyParameter("password",userInfo.getPassword());
         params.addHeader("head","android"); //为当前请求添加一个头
@@ -34,7 +34,7 @@ public class MineModel implements FMineMvp.Model {
                     JSONObject jsonResult = new JSONObject(result);
                     if(jsonResult.optBoolean("isLoginSuccess")){
                         /**
-                         *登录成功、
+                         * 登录成功、
                          * */
                         UserInfo userInfo1 = UserInfo.getUserInfo();
                         userInfo1.setUserName(jsonResult.optString("userName"));
