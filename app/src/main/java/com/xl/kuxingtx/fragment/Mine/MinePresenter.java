@@ -26,7 +26,7 @@ public class MinePresenter implements FMineMvp.Presenter {
         UserInfo userInfo = UserInfo.getUserInfo();
         userInfo.setUserName(userName);
         userInfo.setPassword(password);
-        this.mineModel.registerPost(userInfo);
+        this.mineModel.registerPost(userInfo.toString(),null);
     }
 
     public void resetPassword(String ouserName, String opassword, String nuserName, String npassword){
