@@ -1,6 +1,7 @@
 package com.xl.kuxingtx.activity.MainV2;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -46,6 +48,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //取消状态栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -59,20 +62,40 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int index=0;
+                RadioButton temp = null;
+                RadioButton r0,r1,r2,r3;
+                r0 = (RadioButton)findViewById(R.id.radio0);
+                r1 = (RadioButton)findViewById(R.id.radio1);
+                r2 = (RadioButton)findViewById(R.id.radio2);
+                r3 = (RadioButton)findViewById(R.id.radio3);
                 switch (checkedId){
                     case R.id.radio0:
                         index=0;
+                        r1.setTextColor(Color.rgb(221, 221, 221));
+                        r2.setTextColor(Color.rgb(221, 221, 221));
+                        r3.setTextColor(Color.rgb(221, 221, 221));
                         break;
                     case R.id.radio1:
                         index=1;
+                        r0.setTextColor(Color.rgb(221, 221, 221));
+                        r2.setTextColor(Color.rgb(221, 221, 221));
+                        r3.setTextColor(Color.rgb(221, 221, 221));
                         break;
                     case R.id.radio2:
                         index=2;
+                        r0.setTextColor(Color.rgb(221, 221, 221));
+                        r1.setTextColor(Color.rgb(221, 221, 221));
+                        r3.setTextColor(Color.rgb(221, 221, 221));
                         break;
                     case R.id.radio3:
                         index=3;
+                        r0.setTextColor(Color.rgb(221, 221, 221));
+                        r1.setTextColor(Color.rgb(221, 221, 221));
+                        r2.setTextColor(Color.rgb(221, 221, 221));
                         break;
                 }
+                temp = (RadioButton)findViewById(checkedId);
+                temp.setTextColor(Color.rgb(0,0,0));
                 Fragment fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,index);
                 fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
                 fragmentStatePagerAdapter.finishUpdate(layout_content);
@@ -88,9 +111,11 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             @Override
             public Fragment getItem(int position) {
                 Fragment fragment=null;
+
                 switch (position){
                     case 0://团购
                         fragment=new FragmentIndex();
+
                         break;
                     case 1://附近
                         fragment=new FragmentNote();

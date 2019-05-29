@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:textColor="#FFFF00"
+            android:textColor="#DDDDDD"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="首页" />
 
@@ -34,7 +34,7 @@
             android:drawableTop="@mipmap/ic_launcher"
             android:button="@null"
             android:gravity="center"
-            android:textColor="#FFFF00"
+            android:textColor="#DDDDDD"
             android:text="随笔" />
 
         <RadioButton
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:textColor="#FFFF00"
+            android:textColor="#DDDDDD"
             android:drawableTop="@mipmap/ic_launcher"
             android:gravity="center"
             android:text="周围" />
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFF00"
+            android:textColor="#DDDDDD"
             android:drawableTop="@mipmap/ic_launcher"
             android:button="@null"
             android:gravity="center"
@@ -65,7 +65,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/bottom_bar"
-        android:layout_marginBottom="-50dp">
+        android:layout_marginBottom="-5dp">
 
     </FrameLayout>
 </RelativeLayout>
