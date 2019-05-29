@@ -19,6 +19,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.xuexiangjys:XUI:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-27'
     implementation 'org.xutils:xutils:3.5.0'
     implementation 'com.jiechic.library:xUtils:2.6.14'
     implementation fileTree(dir: 'libs', include: ['*.jar'])

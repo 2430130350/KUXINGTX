@@ -62,9 +62,17 @@ public class GuideActivity extends AppCompatActivity {
                 GuideActivity.this.finish();
             }
         });
+
+        skip();
     }
 
     @Override
     public void onBackPressed() {}
+
+    public void skip(){
+        Intent intent=new Intent(GuideActivity.this, MainV2Activity.class);
+        startActivity(intent);
+        GuideActivity.this.finish();
+    }
 
 }

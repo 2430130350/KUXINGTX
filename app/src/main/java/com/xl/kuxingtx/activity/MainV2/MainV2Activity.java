@@ -15,8 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.FragmentAround;
 import com.xl.kuxingtx.fragment.Index.FragmentIndex;
+import com.xl.kuxingtx.fragment.Mine.FragmentInfo;
 import com.xl.kuxingtx.fragment.Mine.FragmentMine;
 import com.xl.kuxingtx.fragment.Note.FragmentNote;
 import com.xl.kuxingtx.inter.MainV2Mvp;
@@ -112,17 +114,22 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             public Fragment getItem(int position) {
                 Fragment fragment=null;
                 switch (position){
-                    case 0://团购
+                    case 0://首页
                         fragment=new FragmentIndex();
                         break;
-                    case 1://附近
+                    case 1://随笔
                         fragment=new FragmentNote();
                         break;
-                    case 2://我的
+                    case 2://周围
                         fragment=new FragmentAround();
                         break;
-                    case 3://更多
-                        fragment=new FragmentMine();
+                    case 3://我的
+                        if(!UserInfo.getUserInfo().isLogined()){
+                            fragment = new FragmentInfo();
+                        }
+                        else{
+                            fragment=new FragmentMine();
+                        }
                         break;
                     default:
                         fragment=new FragmentIndex();
