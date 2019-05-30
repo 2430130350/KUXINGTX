@@ -1,5 +1,9 @@
 package com.xl.kuxingtx.fragment.Mine.mine;
 
+<<<<<<< HEAD
+=======
+import android.app.Application;
+>>>>>>> origin/master
 import android.util.Log;
 
 import com.xl.kuxingtx.MyApplication;
@@ -13,6 +17,12 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+
+
+>>>>>>> origin/master
 public class MineModel implements FMineMvp.Model {
     private FMineMvp.Presenter minePresenter;
     public MineModel(FMineMvp.Presenter minePresenter){
@@ -21,15 +31,29 @@ public class MineModel implements FMineMvp.Model {
 
     //登录功能
     public void loginPost(UserInfo userInfo){
+<<<<<<< HEAD
         RequestParams params = new RequestParams(MyApplication.webUri_login);
         params.addBodyParameter("userName",userInfo.getUserName());
         params.addBodyParameter("password",userInfo.getPassword());
+=======
+
+    }
+    @Override
+    public void loginPost(String userName, String password) {
+        RequestParams params = new RequestParams(MyApplication.webUri_login);
+        params.addBodyParameter("userName",userName);
+        params.addBodyParameter("password",password);
+>>>>>>> origin/master
         params.addHeader("head","android"); //为当前请求添加一个头
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 //解析result
+<<<<<<< HEAD
                 Log.e("登录发送成功", "成功");
+=======
+                Log.e("登录发送成功", "成功、");
+>>>>>>> origin/master
                 Log.e("登录发送成功", result);
                 try {
                     JSONObject jsonResult = new JSONObject(result);
@@ -44,6 +68,7 @@ public class MineModel implements FMineMvp.Model {
                         Log.e("登录成功", result);
 
                         minePresenter.loginSucess();
+<<<<<<< HEAD
                     }else{
                         Log.e("登录失败", result);
                     }
@@ -53,6 +78,9 @@ public class MineModel implements FMineMvp.Model {
                         String hostid=objects.optString("id");
                         String name=objects.optString("name");
                     }*/
+=======
+                    }
+>>>>>>> origin/master
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -81,7 +109,11 @@ public class MineModel implements FMineMvp.Model {
             @Override
             public void onSuccess(String result) {
                 //解析result
+<<<<<<< HEAD
                 Log.e("注册发送成功", "成功");
+=======
+                Log.e("注册发送成功", "成功、");
+>>>>>>> origin/master
                 Log.e("注册发送成功", result);
                 try {
                     JSONObject jsonResult = new JSONObject(result);
@@ -97,9 +129,12 @@ public class MineModel implements FMineMvp.Model {
                         //userInfo1.setPassword(jsonResult.optString("password"));
                         //userInfo1.setLogined(true);
                     }
+<<<<<<< HEAD
                     else{
                         Log.e("注册失败", result);
                     }
+=======
+>>>>>>> origin/master
                     /*JSONArray array=object.optJSONArray("result");
                     for(int i=0;i<array.length();i++){
                         JSONObject objects=array.optJSONObject(i);
