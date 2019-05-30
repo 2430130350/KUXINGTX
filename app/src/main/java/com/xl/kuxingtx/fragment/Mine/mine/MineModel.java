@@ -27,7 +27,6 @@ public class MineModel implements FMineMvp.Model {
     public void loginPost(UserInfo userInfo){
 
     }
-
     @Override
     public void loginPost(String userName, String password) {
         RequestParams params = new RequestParams(MyApplication.webUri_login);
