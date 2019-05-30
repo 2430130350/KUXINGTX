@@ -18,8 +18,8 @@ import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.FragmentAround;
 import com.xl.kuxingtx.fragment.Index.FragmentIndex;
-import com.xl.kuxingtx.fragment.Mine.FragmentInfo;
-import com.xl.kuxingtx.fragment.Mine.FragmentMine;
+import com.xl.kuxingtx.fragment.Mine.info.FragmentInfo;
+import com.xl.kuxingtx.fragment.Mine.mine.FragmentMine;
 import com.xl.kuxingtx.fragment.Note.FragmentNote;
 import com.xl.kuxingtx.inter.MainV2Mvp;
 

@@ -1,31 +1,40 @@
-package com.xl.kuxingtx.fragment.Mine;
+package com.xl.kuxingtx.fragment.Mine.info;
 
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lidroid.xutils.ViewUtils;
+
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.inter.FInfoMvp;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
-import com.xuexiang.xui.widget.textview.marqueen.DisplayEntity;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
 
 @ContentView(R.layout.fragment_fragment_info)//加载的xml文件
-public class FragmentInfo extends Fragment implements View.OnClickListener {
+public class FragmentInfo extends Fragment implements View.OnClickListener, FInfoMvp.View{
+    private FInfoMvp.Presenter infoPresenter = new InfoPresenter(this);
     @ViewInject(R.id.tv_marquee)
     private MarqueeTextView tv_marquee;
+    @ViewInject(R.id.friend_recycler)
+    private RecyclerView friend_recycler;
+    private FriendAdapter friendAdapter;
+    private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
 
     @Nullable
@@ -39,6 +48,24 @@ public class FragmentInfo extends Fragment implements View.OnClickListener {
         tvDatas.add("内测用户、");
         tvDatas.add("VIP");
         tv_marquee.startSimpleRoll(tvDatas);
+
+
+        FriendBean friendBean;
+        for (int i = 0; i < 15; i++) {
+            friendBean = new FriendBean();
+            friendBean.setUserName("测试、");
+            friendDatas.add(friendBean);
+        }
+        //创建布局管理
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        friend_recycler.setLayoutManager(layoutManager);
+
+        //创建适配器
+        friendAdapter = new FriendAdapter(R.layout.friend_item, friendDatas);
+
+        //给RecyclerView设置适配器
+        friend_recycler.setAdapter(friendAdapter);
 
         return view;
     }
