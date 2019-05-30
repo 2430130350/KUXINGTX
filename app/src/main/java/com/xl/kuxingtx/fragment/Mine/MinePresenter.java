@@ -22,14 +22,26 @@ public class MinePresenter implements FMineMvp.Presenter {
         this.mineModel.loginPost(userInfo);
     }
 
+    @Override
+    public void loginSucess() {
+        mineView.loginSucess();
+    }
+
     public void register(String userName, String password){
-        UserInfo userInfo = UserInfo.getUserInfo();
-        userInfo.setUserName(userName);
-        userInfo.setPassword(password);
-        this.mineModel.registerPost(userInfo.toString(),null);
+        this.mineModel.registerPost(userName,password);
+    }
+
+    @Override
+    public void registerSuccess() {
+        mineView.registerSuccess();
     }
 
     public void resetPassword(String ouserName, String opassword, String nuserName, String npassword){
         this.mineModel.resetPasswordPost(ouserName,opassword,nuserName,npassword);
+    }
+
+    @Override
+    public void resetPasswordSuccess() {
+        mineView.resetPasswordSuccess();
     }
 }

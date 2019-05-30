@@ -20,8 +20,9 @@ public class MineModel implements FMineMvp.Model {
     }
 
 
+    //登录功能
     public void loginPost(UserInfo userInfo){
-        RequestParams params = new RequestParams(MyApplication.weburi_login);
+        RequestParams params = new RequestParams(MyApplication.webUri_login);
         params.addBodyParameter("userName",userInfo.getUserName());
         params.addBodyParameter("password",userInfo.getPassword());
         params.addHeader("head","android"); //为当前请求添加一个头
@@ -42,6 +43,8 @@ public class MineModel implements FMineMvp.Model {
                         userInfo1.setPassword(jsonResult.optString("password"));
                         userInfo1.setLogined(true);
                         Log.e("登录成功", result);
+
+                        minePresenter.loginSucess();
                     }
                     /*JSONArray array=object.optJSONArray("result");
                     for(int i=0;i<array.length();i++){
@@ -67,9 +70,9 @@ public class MineModel implements FMineMvp.Model {
 
     }
 
-
+    //注册功能
     public void registerPost(String userName, String password){
-        RequestParams params = new RequestParams(MyApplication.weburi_login);
+        RequestParams params = new RequestParams(MyApplication.webUri_register);
         params.addBodyParameter("userName",userName);
         params.addBodyParameter("password",password);
         params.addHeader("head","android"); //为当前请求添加一个头
@@ -86,6 +89,8 @@ public class MineModel implements FMineMvp.Model {
                          * 注册成功、
                          * */
                         Log.e("注册成功", result);
+
+                        minePresenter.registerSuccess();
                         //UserInfo userInfo1 = UserInfo.getUserInfo();
                         //userInfo1.setUserName(jsonResult.optString("userName"));
                         //userInfo1.setPassword(jsonResult.optString("password"));
@@ -115,8 +120,9 @@ public class MineModel implements FMineMvp.Model {
 
     }
 
+    //重置密码功能
     public void resetPasswordPost(String ouserName, String opassword, String nuserName, String npassword){
-        RequestParams params = new RequestParams(MyApplication.weburi_login);
+        RequestParams params = new RequestParams(MyApplication.webUri_resetPassword);
         params.addBodyParameter("ouserName",ouserName);
         params.addBodyParameter("opassword",opassword);
         params.addBodyParameter("nuserName",nuserName);
@@ -135,6 +141,7 @@ public class MineModel implements FMineMvp.Model {
                          * 重置密码成功、
                          * */
                         Log.e("重置密码成功", result);
+                        minePresenter.resetPasswordSuccess();
                         //UserInfo userInfo1 = UserInfo.getUserInfo();
                         //userInfo1.setUserName(jsonResult.optString("userName"));
                         //userInfo1.setPassword(jsonResult.optString("password"));

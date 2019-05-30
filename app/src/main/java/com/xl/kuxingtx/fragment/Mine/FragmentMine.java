@@ -87,4 +87,19 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     }
 
 
+    @Override
+    public void loginSucess() {
+
+    }
+
+    @Override
+    public void registerSuccess() {
+
+    }
+
+    @Override
+    public void resetPasswordSuccess() {
+
+    }
+
 }

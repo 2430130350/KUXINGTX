@@ -11,13 +11,14 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.inter.FAroundMvp;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 @ContentView(R.layout.fragment_fragment_around)//加载的xml文件
-public class FragmentAround extends Fragment implements View.OnClickListener{
+public class FragmentAround extends Fragment implements View.OnClickListener, FAroundMvp.View{
     @ViewInject(R.id.home_city)
     public TextView home_city;
     @Nullable
