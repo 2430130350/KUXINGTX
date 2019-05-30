@@ -70,6 +70,56 @@ public class MineModel implements FMineMvp.Model {
 
     }
 
+    @Override
+    public void loginPost(String userName, String password) {
+        RequestParams params = new RequestParams(MyApplication.webUri_login);
+        params.addBodyParameter("userName",userName);
+        params.addBodyParameter("password",password);
+        params.addHeader("head","android"); //为当前请求添加一个头
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                //解析result
+                Log.e("登录发送成功", "成功、");
+                Log.e("登录发送成功", result);
+                try {
+                    JSONObject jsonResult = new JSONObject(result);
+                    if(jsonResult.optBoolean("isLoginSuccess")){
+                        /**
+                         * 登录成功、
+                         * */
+                        UserInfo userInfo1 = UserInfo.getUserInfo();
+                        userInfo1.setUserName(jsonResult.optString("userName"));
+                        userInfo1.setPassword(jsonResult.optString("password"));
+                        userInfo1.setLogined(true);
+                        Log.e("登录成功", result);
+
+                        minePresenter.loginSucess();
+                    }
+                    /*JSONArray array=object.optJSONArray("result");
+                    for(int i=0;i<array.length();i++){
+                        JSONObject objects=array.optJSONObject(i);
+                        String hostid=objects.optString("id");
+                        String name=objects.optString("name");
+                    }*/
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+
+    }
+
     //注册功能
     public void registerPost(String userName, String password){
         RequestParams params = new RequestParams(MyApplication.webUri_register);

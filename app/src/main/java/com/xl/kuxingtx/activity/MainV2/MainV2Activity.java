@@ -123,7 +123,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                         fragment=new FragmentAround();
                         break;
                     case 3://我的
-                        if(!UserInfo.getUserInfo().isLogined()){
+                        if(UserInfo.getUserInfo().isLogined()){
                             fragment = new FragmentInfo();
                         }
                         else{

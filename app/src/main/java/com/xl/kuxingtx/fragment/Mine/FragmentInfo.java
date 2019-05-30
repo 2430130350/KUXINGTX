@@ -35,6 +35,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener {
         //ViewUtils.inject(getActivity());
         View view = x.view().inject(this, inflater, container);
 
+
         tvDatas.add("内测用户、");
         tvDatas.add("VIP");
         tv_marquee.startSimpleRoll(tvDatas);

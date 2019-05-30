@@ -115,6 +115,14 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="311dp" />
 
+        <Button
+            android:id="@+id/buttonTest"
+            android:layout_width="133dp"
+            android:layout_height="58dp"
+            android:text="测试"
+            tools:layout_editor_absoluteX="130dp"
+            tools:layout_editor_absoluteY="427dp" />
+
     </android.support.constraint.ConstraintLayout>
 
 

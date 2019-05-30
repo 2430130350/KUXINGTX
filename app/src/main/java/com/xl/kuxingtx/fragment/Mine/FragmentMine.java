@@ -42,6 +42,9 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     @ViewInject(R.id.buttonSign)
     private Button buttonSign;
 
+    //测试用的按钮
+    @ViewInject(R.id.buttonTest)
+    private Button buttonTest;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,15 +57,26 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String account= editAccount.getText().toString();
-                String pwd=editPassword.getText().toString();
-                Log.e("","我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！我他妈要上天！！！+account");
-                Log.e("","我他妈不要上 天！！！我他妈不要上天！！！我他妈不要上天！！！我他妈不要上天！！！我他妈不要上天！！！+pwd");
-                //对model层的接口进行调用
+                String userName= editAccount.getText().toString();
+                String password=editPassword.getText().toString();
+                 Log.e("",userName);
+                 Log.e("",password);
+                minePresenter.login(userName,password);
+            }
+        });
+
+        //测试的监听事件
+        buttonTest.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
             }
         });
         return view;
     }
+
+
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
