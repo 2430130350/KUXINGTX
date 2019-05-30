@@ -8,4 +8,14 @@ public class InfoPresenter implements FInfoMvp.Presenter {
     public InfoPresenter(FInfoMvp.View infoView){
         this.infoView = infoView;
     }
+
+    @Override
+    public void query_info(String name, String password) {
+
+    }
+
+    @Override
+    public void modify_info(String oname, String opassword, String nname, String npassword) {
+
+    }
 }
