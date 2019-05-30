@@ -41,9 +41,6 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     @ViewInject(R.id.buttonSign)
     private Button buttonSign;
 
-    //测试用的按钮
-    @ViewInject(R.id.buttonTest)
-    private Button buttonTest;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,14 +75,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         });*/
 
 
-        //测试的监听事件
-        buttonTest.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         return view;
     }
 
