@@ -1,4 +1,4 @@
-package com.xl.kuxingtx.fragment.Mine;
+package com.xl.kuxingtx.fragment.Mine.mine;
 
 
 

@@ -1,4 +1,4 @@
-package com.xl.kuxingtx.fragment.Mine;
+package com.xl.kuxingtx.fragment.Mine.mine;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.inter.FMineMvp;
 
