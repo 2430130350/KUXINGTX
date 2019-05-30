@@ -1,4 +1,4 @@
-package com.xl.kuxingtx.fragment.Mine;
+package com.xl.kuxingtx.fragment.Mine.mine;
 
 import android.util.Log;
 
@@ -18,7 +18,6 @@ public class MineModel implements FMineMvp.Model {
     public MineModel(FMineMvp.Presenter minePresenter){
         this.minePresenter = minePresenter;
     }
-
 
     //登录功能
     public void loginPost(UserInfo userInfo){
