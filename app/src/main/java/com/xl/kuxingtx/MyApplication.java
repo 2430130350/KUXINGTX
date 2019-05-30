@@ -7,7 +7,10 @@ import com.xuexiang.xui.XUI;
 
 //初始化
 public class MyApplication extends Application {
-    public static String weburi_login = "http://10.120.175.14:8000/login/";
+    public static String httpHead="http://"+"10.120.175.14:8000/";
+    public static String webUri_login = httpHead + "login/";
+    public static String webUri_register = httpHead + "register/";
+    public static String webUri_resetPassword = httpHead + "resetPassword/";
     @Override
     public void onCreate() {
         super.onCreate();
