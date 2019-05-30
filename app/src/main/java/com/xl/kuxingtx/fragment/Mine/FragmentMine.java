@@ -53,17 +53,31 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         View view = x.view().inject(this, inflater, container);
 
 
-        //登录的监听事件
+/*        //登录的监听事件
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userName= editAccount.getText().toString();
                 String password=editPassword.getText().toString();
-                 Log.e("",userName);
-                 Log.e("",password);
-                minePresenter.login(userName,password);
+                 Log.e("登录账号",userName);
+                 Log.e("登录密码",password);
+                minePresenter.login(userName,password);                                 //注:登录调用这个即可
             }
-        });
+        });*/
+
+ /*       //注册的监听事件
+        buttonSign.setOnClickListener(new View.OnClickListener(){                       //注:注册肯定不是一个按钮就搞定，因而此处只给出测试模板
+
+            @Override
+            public void onClick(View view) {
+                String userName= editAccount.getText().toString();
+                String password=editPassword.getText().toString();
+                Log.e("注册账号",userName);
+                Log.e("注册密码",password);
+                minePresenter.register(userName, password);
+            }
+        });*/
+
 
         //测试的监听事件
         buttonTest.setOnClickListener(new View.OnClickListener(){
@@ -75,6 +89,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         });
         return view;
     }
+
 
 
 

@@ -25,7 +25,6 @@ public interface FMineMvp {
     public interface Model{
         //登录功能
         public void loginPost(UserInfo userInfo);
-        public void loginPost(String userName,String password);
         //注册功能
         public void registerPost(String userName, String password);
         //重置密码功能
