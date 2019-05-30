@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,27 @@
     tools:context=".fragment.Mine.mine.FragmentMine">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.xuexiang.xui.widget.imageview.RadiusImageView
+        android:id="@+id/radiusImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:src="@drawable/pic1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="@color/xui_config_color_gray_6"
+        app:riv_border_width="1px"
+        app:riv_corner_radius="10dp"
+        app:riv_selected_border_color="@color/xui_config_color_gray_4"
+        app:riv_selected_border_width="1px"
+        app:riv_selected_mask_color="@color/xui_config_color_gray_8"></com.xuexiang.xui.widget.imageview.RadiusImageView>
 
-        <Button
+    <!--<Button
             android:id="@+id/buttonForget"
             android:layout_width="80dp"
             android:layout_height="36dp"
@@ -121,10 +137,8 @@
             android:layout_height="58dp"
             android:text="测试"
             tools:layout_editor_absoluteX="130dp"
-            tools:layout_editor_absoluteY="427dp" />
+            tools:layout_editor_absoluteY="427dp" />-->
 
-    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
 
 
-
-</FrameLayout>
