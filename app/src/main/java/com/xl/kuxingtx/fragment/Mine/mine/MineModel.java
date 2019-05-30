@@ -23,6 +23,10 @@ public class MineModel implements FMineMvp.Model {
         this.minePresenter = minePresenter;
     }
 
+
+
+
+
     //登录功能
     public void loginPost(UserInfo userInfo){
 
