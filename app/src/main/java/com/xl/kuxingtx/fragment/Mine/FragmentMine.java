@@ -46,7 +46,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_mine,null);
-        ViewUtils.inject(getActivity());
+
         View view = x.view().inject(this, inflater, container);
 
 

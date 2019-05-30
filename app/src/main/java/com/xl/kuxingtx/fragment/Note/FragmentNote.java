@@ -20,10 +20,11 @@ import org.xutils.x;
 public class FragmentNote extends Fragment implements View.OnClickListener{
     @ViewInject(R.id.home_city)
     public TextView home_city;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewUtils.inject(getActivity());
+
         View view = x.view().inject(this, inflater, container);
         home_city=view.findViewById(R.id.home_city);
         home_city.setOnClickListener(this);

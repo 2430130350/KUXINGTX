@@ -12,5 +12,9 @@
         android:layout_height="match_parent"
         android:text="随笔" />
 
+
+    <include layout="@layout/fragment_fragment_info"
+        android:layout_height="500dp"
+        android:layout_width="match_parent"/>
 </FrameLayout>
 
