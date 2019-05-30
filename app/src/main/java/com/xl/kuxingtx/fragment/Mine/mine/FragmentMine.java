@@ -22,24 +22,24 @@ import org.xutils.x;
 public class FragmentMine extends Fragment implements  View.OnClickListener, FMineMvp.View {
     private FMineMvp.Presenter minePresenter = new MinePresenter(this);
     //注:这是账号
-    @ViewInject(R.id.editAccount)
-    private EditText editAccount;
+    @ViewInject(R.id.input_username)
+    private EditText input_username;
 
     //注:这是密码
-    @ViewInject(R.id.editPassword)
-    private EditText editPassword;
+    @ViewInject(R.id.input_password)
+    private EditText input_password;
 
     //登录的按钮
-    @ViewInject(R.id.buttonLogin)
-    private Button buttonLogin;
+    @ViewInject(R.id.sign_in_btn)
+    private Button sign_in_btn;
 
-    //忘记密码的按钮
+/*    //忘记密码的按钮
     @ViewInject(R.id.buttonForget)
     private Button buttonForget;
 
     //忘记密码的按钮
     @ViewInject(R.id.buttonSign)
-    private Button buttonSign;
+    private Button buttonSign;*/
 
     @Nullable
     @Override

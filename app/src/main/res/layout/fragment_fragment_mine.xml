@@ -4,30 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pic3"
     tools:context=".fragment.Mine.mine.FragmentMine">
 
     <!-- TODO: Update blank fragment layout -->
-<!--    <com.xuexiang.xui.widget.imageview.RadiusImageView
+    <com.xuexiang.xui.widget.imageview.RadiusImageView
         android:id="@+id/radiusImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.7"
+        android:background="#ffffff"
         android:clickable="true"
-        android:src="@drawable/pic1"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHeight_percent="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8"
         app:riv_border_color="@color/xui_config_color_gray_6"
         app:riv_border_width="1px"
         app:riv_corner_radius="10dp"
         app:riv_selected_border_color="@color/xui_config_color_gray_4"
         app:riv_selected_border_width="1px"
-        app:riv_selected_mask_color="@color/xui_config_color_gray_8"></com.xuexiang.xui.widget.imageview.RadiusImageView>-->
+        app:riv_selected_mask_color="@color/xui_config_color_gray_8"></com.xuexiang.xui.widget.imageview.RadiusImageView>
 
-    <Button
+    <com.xuexiang.xui.widget.imageview.RadiusImageView
+        android:id="@+id/radiusImageView3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:src="@drawable/pic1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:riv_border_color="@color/xui_config_color_gray_6"
+        app:riv_border_width="1px"
+        app:riv_is_circle="true"
+        app:riv_selected_border_color="@color/xui_config_color_gray_4"
+        app:riv_selected_border_width="1px"
+        app:riv_selected_mask_color="@color/xui_config_color_gray_8" />
+
+    <com.xuexiang.xui.widget.edittext.ValidatorEditText
+        android:id="@+id/input_username"
+        style="@style/EditText.Normal"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:hint="用户名/手机号"
+        android:singleLine="true"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline6"
+        app:layout_constraintWidth_percent="0.6"
+        app:vet_errorMessage="请检查输入、"
+        app:vet_regexp=".*"
+        app:vet_tipPosition="top" />
+
+    <com.xuexiang.xui.widget.edittext.ValidatorEditText
+        android:id="@+id/input_password"
+        style="@style/EditText.Normal"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_username"
+        app:layout_constraintWidth_percent="0.6"
+        app:vet_errorMessage="请检查输入、"
+        app:vet_regexp=".*"
+        app:vet_tipPosition="top" />
+
+    <com.xuexiang.xui.widget.button.ButtonView
+        android:id="@+id/sign_in_btn"
+        style="@style/ButtonView.Blue"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:text="登录"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password"
+        app:layout_constraintWidth_percent="0.6" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <TextView
+        android:id="@+id/sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Sign In"
+        android:textSize="40dp"
+        android:textColor="#848A86"
+        app:layout_constraintBottom_toTopOf="@+id/input_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radiusImageView3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <TextView
+        android:id="@+id/to_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="还没有账号？"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/radiusImageView"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_btn"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_btn" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <!-- <Button
             android:id="@+id/buttonForget"
             android:layout_width="80dp"
             android:layout_height="36dp"
@@ -129,7 +264,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="311dp" />
+            app:layout_constraintGuide_begin="311dp" />-->
+
 
 </android.support.constraint.ConstraintLayout>
 
