@@ -82,7 +82,7 @@
             android:text=""/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/info_recycler"
+            android:id="@+id/trends_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"

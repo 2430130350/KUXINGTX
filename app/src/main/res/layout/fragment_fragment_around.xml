@@ -41,22 +41,21 @@
             android:orientation="vertical">
 
 
-
             <com.xuexiang.xui.widget.imageview.RadiusImageView
                 android:id="@+id/radiusImageView"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:src="@drawable/pic1"
                 app:riv_border_color="@color/xui_config_color_gray_6"
                 app:riv_border_width="1px"
                 app:riv_corner_radius="10dp"
+                app:riv_is_touch_select_mode_enabled="false"
                 app:riv_selected_border_color="@color/xui_config_color_gray_4"
                 app:riv_selected_border_width="1px"
-                app:riv_selected_mask_color="@color/xui_config_color_gray_8"
-                app:riv_is_touch_select_mode_enabled="false"></com.xuexiang.xui.widget.imageview.RadiusImageView>
+                app:riv_selected_mask_color="@color/xui_config_color_gray_8"></com.xuexiang.xui.widget.imageview.RadiusImageView>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/info_recycler"
+                android:id="@+id/trends_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#fff"

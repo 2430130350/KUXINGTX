@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.xl.kuxingtx.R;
-import com.xl.kuxingtx.fragment.Mine.info.FriendAdapter;
-import com.xl.kuxingtx.fragment.Mine.info.FriendBean;
 import com.xl.kuxingtx.inter.MyInfoMvp;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
@@ -20,12 +18,10 @@ import org.xutils.x;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 @ContentView(R.layout.activity_my_info)
 public class MyInfoActivity extends AppCompatActivity implements View.OnClickListener, MyInfoMvp.View {
     private MyInfoMvp.Presenter myInfoPresent = new MyInfoPresenter(this);
-    @ViewInject(R.id.info_recycler)
+    @ViewInject(R.id.trends_recycler)
     private RecyclerView info_recycler;
     @ViewInject(R.id.titleBar)
     private TitleBar titleBar;
