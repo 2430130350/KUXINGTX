@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.inter.FMineMvp;
+import com.xuexiang.xui.widget.button.ButtonView;
+import com.xuexiang.xui.widget.edittext.ValidatorEditText;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -23,23 +26,26 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     private FMineMvp.Presenter minePresenter = new MinePresenter(this);
     //注:这是账号
     @ViewInject(R.id.input_username)
-    private EditText input_username;
-
+    private ValidatorEditText input_username;
     //注:这是密码
     @ViewInject(R.id.input_password)
-    private EditText input_password;
-
+    private ValidatorEditText input_password;
     //登录的按钮
     @ViewInject(R.id.sign_in_btn)
-    private Button sign_in_btn;
+    private ButtonView sign_in_btn;
+    @ViewInject(R.id.reinput_password)
+    private ValidatorEditText reinput_password;
+    @ViewInject(R.id.sign_up_btn)
+    private ButtonView sign_up_btn;
+    @ViewInject(R.id.to_sign_up)
+    private TextView to_sign_up;
+    @ViewInject(R.id.sign_in_text)
+    private TextView sign_in_text;
+    @ViewInject(R.id.sign_up_text)
+    private TextView sign_up_text;
+    @ViewInject(R.id.return_sign_in)
+    private TextView return_sign_in;
 
-/*    //忘记密码的按钮
-    @ViewInject(R.id.buttonForget)
-    private Button buttonForget;
-
-    //忘记密码的按钮
-    @ViewInject(R.id.buttonSign)
-    private Button buttonSign;*/
 
     @Nullable
     @Override
@@ -48,37 +54,16 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
 
         View view = x.view().inject(this, inflater, container);
 
-
-/*        //登录的监听事件
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userName= editAccount.getText().toString();
-                String password=editPassword.getText().toString();
-                 Log.e("登录账号",userName);
-                 Log.e("登录密码",password);
-                minePresenter.login(userName,password);                                 //注:登录调用这个即可
-            }
-        });*/
-
- /*       //注册的监听事件
-        buttonSign.setOnClickListener(new View.OnClickListener(){                       //注:注册肯定不是一个按钮就搞定，因而此处只给出测试模板
-
-            @Override
-            public void onClick(View view) {
-                String userName= editAccount.getText().toString();
-                String password=editPassword.getText().toString();
-                Log.e("注册账号",userName);
-                Log.e("注册密码",password);
-                minePresenter.register(userName, password);
-            }
-        });*/
-
-
-
+        initListener();
         return view;
     }
 
+    private void initListener(){
+        sign_in_btn.setOnClickListener(this);
+        sign_up_btn.setOnClickListener(this);
+        to_sign_up.setOnClickListener(this);
+        return_sign_in.setOnClickListener(this);
+    }
 
 
 
@@ -93,15 +78,32 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()){
-            case R.id.home_city://地址
-                startActivity(new Intent(getActivity(),CityActivity.class));
+        switch (v.getId()){
+            case R.id.to_sign_up://地址
+                //隐藏登录、
+                sign_in_btn.setVisibility(View.GONE);
+                to_sign_up.setVisibility(View.GONE);
+                sign_in_text.setVisibility(View.GONE);
+
+                //显示注册、
+                reinput_password.setVisibility(View.VISIBLE);
+                sign_up_btn.setVisibility(View.VISIBLE);
+                sign_up_text.setVisibility(View.VISIBLE);
+                return_sign_in.setVisibility(View.VISIBLE);
                 break;
-            case R.id.home_map://地图
+            case R.id.return_sign_in:
+                //显示登录、
+                sign_in_btn.setVisibility(View.VISIBLE);
+                to_sign_up.setVisibility(View.VISIBLE);
+                sign_in_text.setVisibility(View.VISIBLE);
+
+                //隐藏注册、
+                reinput_password.setVisibility(View.GONE);
+                sign_up_btn.setVisibility(View.GONE);
+                sign_up_text.setVisibility(View.GONE);
+                return_sign_in.setVisibility(View.GONE);
                 break;
-            case R.id.home_search://搜索
-                break;
-        }*/
+        }
     }
 
 
