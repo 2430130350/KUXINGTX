@@ -15,6 +15,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.fragment.Around.TrendsAdapter;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
+import com.zzhoujay.richtext.RichText;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -36,8 +37,8 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = x.view().inject(this, inflater, container);
-
-
+        //必须先调用RichText.initCacheDir()方法、不然报错、
+        RichText.initCacheDir(this.getActivity());
 
         NoteBean noteBean;
         for (int i = 0; i < 15; i++) {

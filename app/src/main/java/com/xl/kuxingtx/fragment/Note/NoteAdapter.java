@@ -17,7 +17,7 @@ public class NoteAdapter extends BaseQuickAdapter<NoteBean, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, NoteBean item) {
         helper.setText(R.id.time, "2017.05.22");
         TextView note_content = helper.getView(R.id.note_content);
-        RichText.from(item.getContent()).singleLoad(false).into(note_content);
+        RichText.from(item.getPartialContent()).singleLoad(false).into(note_content);
 
         helper.addOnClickListener(R.id.trends_content);
 

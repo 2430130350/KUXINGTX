@@ -18,6 +18,8 @@ import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.inter.IndexMvp;
+
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -28,7 +30,8 @@ import butterknife.Unbinder;
 
 
 
-public class FragmentIndex extends Fragment implements View.OnClickListener {
+public class FragmentIndex extends Fragment implements View.OnClickListener, IndexMvp.View{
+    private IndexMvp.Presenter indexPresenter = new IndexPresenter(this);
     private Unbinder unbinder;
     @BindView(R.id.home_city)
     public TextView home_city;
