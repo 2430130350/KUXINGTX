@@ -19,13 +19,21 @@ import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
 import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
+import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.inter.IndexMvp;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,6 +112,34 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
             mLocationClient.stopLocation();
             mLocationClient.startLocation();
         }
+        PoiSearch.Query query = new PoiSearch.Query("武汉", "110000", "武汉");
+        //keyWord表示搜索字符串，
+        //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
+        //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
+        query.setPageSize(10);// 设置每页最多返回多少条poiitem
+        query.setPageNum(1);//设置查询页码
+        PoiSearch poiSearch = new PoiSearch(this.getContext(), query);
+        poiSearch.setBound(new PoiSearch.SearchBound(new LatLonPoint(mLocationClient.getLastKnownLocation().getLatitude(),
+                mLocationClient.getLastKnownLocation().getLongitude()), 1000));//设置周边搜索的中心点以及半径
+        poiSearch.setOnPoiSearchListener(new PoiSearch.OnPoiSearchListener() {
+            @Override
+            public void onPoiSearched(PoiResult poiResult, int i) {
+                ArrayList<PoiItem> poiItemArrayList=poiResult.getPois();
+                for(int j=0;j<10;j++){
+                    aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
+                            .get(j).getLatLonPoint().getLatitude(),poiItemArrayList
+                            .get(j).getLatLonPoint().getLongitude()))
+                            .title(poiItemArrayList.get(j).getTitle())
+                            .snippet(poiItemArrayList.get(j).getSnippet()));
+                }
+            }
+
+            @Override
+            public void onPoiItemSearched(PoiItem poiItem, int i) {
+
+            }
+        });
+        poiSearch.searchPOIAsyn();
     }
 
     @Override
@@ -169,6 +205,7 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                         //可在其中解析amapLocation获取相应内容。
                         mListener.onLocationChanged(aMapLocation);
                         isFirstLoc = false;
+
                     }
                 } else Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() +
                         ", errInfo:" + aMapLocation.getErrorInfo());
