@@ -1,11 +1,14 @@
-package com.xl.kuxingtx.fragment.Around;
+package com.xl.kuxingtx.fragment.Note;
+
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TrendsBean {
+public class NoteBean {
     private String username;
     private Date mTime;
     private String content;
@@ -18,14 +21,6 @@ public class TrendsBean {
         this.username = username;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Date getmTime() {
         return mTime;
     }
@@ -34,8 +29,12 @@ public class TrendsBean {
         this.mTime = mTime;
     }
 
-    public long getTimeStamp(){
-        return this.mTime.getTime();
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getDateString(String format){
