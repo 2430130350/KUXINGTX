@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import com.xl.kuxingtx.R;
@@ -36,11 +37,18 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private MarqueeTextView tv_marquee;
     @ViewInject(R.id.friend_recycler)
     private RecyclerView friend_recycler;
-    @ViewInject(R.id.mine_username)
-    private LabelTextView mine_username;
+   /* @ViewInject(R.id.mine_username)
+    private LabelTextView mine_username;*/
     private FriendAdapter friendAdapter;
     private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
+
+    //测试的按钮
+    @ViewInject(R.id.buttonTest)
+    private Button buttonTest;
+
+    public FragmentInfo() {
+    }
 
     @Nullable
     @Override
@@ -49,6 +57,23 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
         //ViewUtils.inject(getActivity());
         View view = x.view().inject(this, inflater, container);
 
+        //测试按钮
+        buttonTest.bringToFront();
+        buttonTest.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //String uid, String fid, String nick_name, String description
+                long uid=3;
+                long fid=7;
+                String nick_name="nibuyaocai";
+                String description="nicai";
+                //String ouserName="Li";
+                //String opassword="nicai";
+                infoPresenter.relation_add(uid, fid, nick_name, description);
+                //infoPresenter.query_info(ouserName, opassword);
+                //infoPresenter.modify_info(ouserName, opassword, nuserName, npassword);
+            }
+        });
 
         tvDatas.add("内测用户、");
         tvDatas.add("VIP");
@@ -71,14 +96,14 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
         //给RecyclerView设置适配器
         friend_recycler.setAdapter(friendAdapter);
-        initListener();
+        //initListener();
 
         return view;
     }
 
-    private void initListener(){
+   /* private void initListener(){
         mine_username.setOnClickListener(this);
-    }
+    }*/
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
@@ -91,11 +116,46 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+       /* switch (v.getId()){
             case R.id.mine_username://地址
                 startActivity(new Intent(getActivity(), MyInfoActivity.class));
                 break;
-        }
+        }*/
+    }
+
+    @Override
+    public void query_infoSuccess() {
+
+    }
+
+    @Override
+    public void modify_infoSuccess() {
+
+    }
+
+    @Override
+    public void relation_addSuccess() {
+
+    }
+
+    @Override
+    public void relation_confirmSuccess() {
+
+    }
+
+    @Override
+    public void relation_delSuccess() {
+
+    }
+
+    @Override
+    public void relation_my_all_qurSuccess() {
+
+    }
+
+    @Override
+    public void relation_my_one_qurSuccess() {
+
     }
 }
 
