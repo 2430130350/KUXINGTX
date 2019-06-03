@@ -36,7 +36,6 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
     @BindView(R.id.home_city)
     public TextView home_city;
 
-
     @BindView(R.id.map)
     public MapView mMapView;
 
