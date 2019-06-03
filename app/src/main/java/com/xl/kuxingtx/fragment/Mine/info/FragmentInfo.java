@@ -1,27 +1,21 @@
 package com.xl.kuxingtx.fragment.Mine.info;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
 import com.xl.kuxingtx.R;
-import com.xl.kuxingtx.activity.myinfo.MyInfoActivity;
 import com.xl.kuxingtx.friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
-import com.xuexiang.xui.widget.textview.label.LabelTextView;
-
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -54,6 +48,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
         //View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_info, null);
         //ViewUtils.inject(getActivity());
         View view = x.view().inject(this, inflater, container);
+
 
         tvDatas.add("内测用户、");
         tvDatas.add("VIP");
