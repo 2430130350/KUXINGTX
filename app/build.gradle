@@ -26,6 +26,8 @@ dependencies {
     }
     implementation 'jp.wasabeef:richeditor-android:1.2.2'
 
+    implementation 'com.longsh:OptionFrame:1.0.0'
+
     implementation 'com.zzhoujay.richtext:richtext:3.0.8'
     implementation 'com.zzhoujay:html:1.0.2'
 
