@@ -46,7 +46,7 @@ public class MineModel implements FMineMvp.Model {
                          * 登录成功、
                          * */
                         UserInfo userInfo1 = UserInfo.getUserInfo();
-                        userInfo1.setId(jsonResult.optInt("id"));
+                        userInfo1.setId( jsonResult.optInt("id"));
                         userInfo1.setUserName(jsonResult.optString("userName"));
                         userInfo1.setPassword(jsonResult.optString("password"));
                         userInfo1.setLogined(true);
