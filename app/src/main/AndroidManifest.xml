@@ -26,8 +26,8 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="KUXINGTX" />
-
+            android:value="67522eebdaf26d34f36343f97c79a171" />
+        <service android:name="com.amap.api.location.APSService"></service>
         <activity android:name=".activity.MainV2.MainV2Activity" />
         <activity android:name=".activity.readTrends.ReadTrendsActivity" />
         <activity android:name=".activity.myInfo.MyInfoActivity" />
