@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.activity.myinfo.MyInfoActivity;
+import com.xl.kuxingtx.friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
 import com.xuexiang.xui.widget.textview.label.LabelTextView;
@@ -43,10 +45,6 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
 
-    //测试的按钮
-    @ViewInject(R.id.buttonTest)
-    private Button buttonTest;
-
     public FragmentInfo() {
     }
 
@@ -56,24 +54,6 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
         //View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_fragment_info, null);
         //ViewUtils.inject(getActivity());
         View view = x.view().inject(this, inflater, container);
-
-        //测试按钮
-        buttonTest.bringToFront();
-        buttonTest.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //String uid, String fid, String nick_name, String description
-                long uid=3;
-                long fid=7;
-                String nick_name="nibuyaocai";
-                String description="nicai";
-                //String ouserName="Li";
-                //String opassword="nicai";
-                infoPresenter.relation_add(uid, fid, nick_name, description);
-                //infoPresenter.query_info(ouserName, opassword);
-                //infoPresenter.modify_info(ouserName, opassword, nuserName, npassword);
-            }
-        });
 
         tvDatas.add("内测用户、");
         tvDatas.add("VIP");
@@ -154,7 +134,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     }
 
     @Override
-    public void relation_my_one_qurSuccess() {
+    public void relation_my_one_qurSuccess(ArrayList<friend> friends) {
 
     }
 }

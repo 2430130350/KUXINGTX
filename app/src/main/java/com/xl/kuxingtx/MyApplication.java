@@ -7,13 +7,18 @@ import com.xuexiang.xui.XUI;
 
 //初始化
 public class MyApplication extends Application {
-    public static String httpHead="http://"+"192.168.43.99:8000/";
+    public static String httpHead="http://"+"192.168.1.102:8000/";
     public static String webUri_login = httpHead + "login/";
     public static String webUri_register = httpHead + "register/";
     public static String webUri_resetPassword = httpHead + "resetPassword/";
     public static String webUri_query_info = httpHead + "query_info/";
     public static String webUri_modify_info = httpHead + "modify_info/";
     public static String webUri_relation_add = httpHead + "relation_add/";
+    public static String webUri_relation_confirm=httpHead + "relation_confirm/";
+    public static String webUri_relation_del=httpHead + "relation_del/";
+    public static String webUri_relation_my_all_qur=httpHead + "relation_my_all_qur/";
+    public static String webUri_relation_my_one_qur=httpHead + "relation_my_one_qur/";
+
 
     @Override
     public void onCreate() {
