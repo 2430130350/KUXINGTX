@@ -72,4 +72,8 @@ public class NoteBean {
         }
         return partialContent;
     }
+
+    public String getFormatContent(){
+        return this.content.replaceAll("<img",  "<img style=\"max-width:100%\"");
+    }
 }

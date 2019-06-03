@@ -24,6 +24,7 @@ dependencies {
         exclude group: 'com.android.support'
         exclude group: 'com.github.bumptech.glide' //当你的项目使用Glide4.0以下版本时建议添加此项
     }
+    implementation 'jp.wasabeef:richeditor-android:1.2.2'
 
     implementation 'com.zzhoujay.richtext:richtext:3.0.8'
     implementation 'com.zzhoujay:html:1.0.2'

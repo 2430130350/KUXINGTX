@@ -19,7 +19,7 @@ public class NoteAdapter extends BaseQuickAdapter<NoteBean, BaseViewHolder> {
         TextView note_content = helper.getView(R.id.note_content);
         RichText.from(item.getPartialContent()).singleLoad(false).into(note_content);
 
-        helper.addOnClickListener(R.id.trends_content);
+        helper.addOnClickListener(R.id.note_content);
 
     }
 }

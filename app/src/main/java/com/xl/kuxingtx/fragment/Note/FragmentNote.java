@@ -1,5 +1,6 @@
 package com.xl.kuxingtx.fragment.Note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,8 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.activity.readNote.ReadNoteActivity;
+import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
 import com.xl.kuxingtx.fragment.Around.TrendsAdapter;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
 import com.zzhoujay.richtext.RichText;
@@ -30,7 +35,7 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     private RecyclerView note_recycler;
 
     private NoteAdapter noteAdapter;
-    private List<NoteBean> noteBeans = new ArrayList<NoteBean>();
+    private List<NoteBean> noteDatas = new ArrayList<NoteBean>();
 
     @Nullable
     @Override
@@ -50,7 +55,7 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                             "　　尽管联邦快递随后声称这些都是偶然的错误，但是舆论的大量分析质疑联邦快递这样做是受到了美国政府的指使。因为上述四件包裹在几天时间里先后被错误地改为发往美国，实在太蹊跷了。这样的出错率与联邦快递通常的服务水平大相径庭。\n" +
                             "\n" +
                             "　　更重要的是，美国政府正动用国家力量对华为开展致力于让其关门的全面打压，而四件包裹错投的终极地都是美国，这加重了人们对联邦快递这样做是受到美国政府操纵的怀疑。");
-            noteBeans.add(noteBean);
+            noteDatas.add(noteBean);
         }
         //创建布局管理
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
@@ -58,13 +63,36 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
         note_recycler.setLayoutManager(layoutManager);
 
         //创建适配器
-        noteAdapter = new NoteAdapter(R.layout.note_item, noteBeans);
+        noteAdapter = new NoteAdapter(R.layout.note_item, noteDatas);
 
         //给RecyclerView设置适配器
         note_recycler.setAdapter(noteAdapter);
+        initListener();
         return view;
     }
 
+    private void initListener(){
+        note_recycler.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                super.onItemChildClick(adapter, view, position);
+                int itemViewId = view.getId();
+                switch (itemViewId) {
+                    case R.id.note_content:
+                        //Toast.makeText(getActivity(), "点击了、", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.putExtra("note_content_str", noteDatas.get(position).getFormatContent());
+                        intent.setClass(getActivity(), ReadNoteActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+    }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {

@@ -71,6 +71,12 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
 
         //给RecyclerView设置适配器
         trends_recycler.setAdapter(trendsAdapter);
+
+        initListener();
+        return view;
+    }
+
+    private void initListener(){
         trends_recycler.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -91,7 +97,6 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
                 }
             }
         });
-        return view;
     }
 
 
