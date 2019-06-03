@@ -3,7 +3,8 @@ package com.xl.kuxingtx;
 public class UserInfo {
     private String userName = "";
     private String password = "";
-    private boolean isLogined = false;
+//    这里先假装登录了、
+    private boolean isLogined = true;
 
 
     private static UserInfo userInfo = new UserInfo();

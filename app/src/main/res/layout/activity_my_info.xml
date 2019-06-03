@@ -4,7 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Main.MainActivity">
+    tools:context=".activity.myinfo.MyInfoActivity">
+
+    <com.xuexiang.xui.widget.actionbar.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/xui_config_color_titlebar"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tb_actionPadding="20dp"
+        app:tb_barHeight="45dp"
+        app:tb_dividerColor="@color/xui_config_color_red"
+        app:tb_leftText="返回"
+        app:tb_sideTextPadding="20dp"
+
+        app:tb_titleText="汐离" />
 
     <com.xuexiang.xui.widget.imageview.RadiusImageView
         android:id="@+id/radiusImageView"
@@ -16,17 +34,16 @@
         android:clickable="true"
         android:src="@drawable/pic1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar"
         app:riv_border_color="@color/xui_config_color_gray_6"
         app:riv_border_width="1px"
         app:riv_corner_radius="10dp"
         app:riv_selected_border_color="@color/xui_config_color_gray_4"
         app:riv_selected_border_width="1px"
-        app:riv_selected_mask_color="@color/xui_config_color_gray_8"
-        app:riv_is_touch_select_mode_enabled="false"></com.xuexiang.xui.widget.imageview.RadiusImageView>
-
+        app:riv_selected_mask_color="@color/xui_config_color_gray_8"></com.xuexiang.xui.widget.imageview.RadiusImageView>
 
     <com.xuexiang.xui.widget.imageview.RadiusImageView
         android:id="@+id/radiusImageView2"
@@ -36,7 +53,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:src="@drawable/pic2"
-        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintBottom_toBottomOf="@+id/radiusImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:riv_border_color="@color/xui_config_color_gray_6"
         app:riv_border_width="10px"
@@ -45,51 +62,31 @@
         app:riv_selected_border_width="1px"
         app:riv_selected_mask_color="@color/xui_config_color_gray_8" />
 
-    <com.xuexiang.xui.widget.textview.MarqueeTextView
-        android:id="@+id/tv_marquee"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#88dddddd"
-        app:layout_constraintBottom_toTopOf="@+id/radiusImageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:mtv_isAutoDisplay="true"
-        app:mtv_isAutoFit="true" />
-
-    <com.xuexiang.xui.widget.textview.label.LabelTextView
-        android:id="@+id/mine_username"
-        android:clickable="true"
-        android:layout_width="142dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#212121"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="汐离"
-        android:textColor="#ffffff"
-        app:label_backgroundColor="#03A9F4"
-        app:label_distance="15dp"
-        app:label_orientation="LEFT_TOP"
-        app:label_text="VIP"
-        app:label_textSize="10sp"
-        app:label_textStyle="BOLD_ITALIC"
-        app:layout_constraintStart_toEndOf="@+id/radiusImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_marquee" />
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/friend_list"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiusImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/radiusImageView">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="#fff"
+            android:textColor="#fff"
+            android:text=""/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/trends_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:overScrollMode="never" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

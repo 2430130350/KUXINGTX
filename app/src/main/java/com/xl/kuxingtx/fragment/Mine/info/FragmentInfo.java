@@ -1,6 +1,7 @@
 package com.xl.kuxingtx.fragment.Mine.info;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,8 +14,10 @@ import android.view.ViewGroup;
 
 
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.activity.myinfo.MyInfoActivity;
 import com.xl.kuxingtx.inter.FInfoMvp;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
+import com.xuexiang.xui.widget.textview.label.LabelTextView;
 
 
 import org.xutils.view.annotation.ContentView;
@@ -33,6 +36,8 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private MarqueeTextView tv_marquee;
     @ViewInject(R.id.friend_recycler)
     private RecyclerView friend_recycler;
+    @ViewInject(R.id.mine_username)
+    private LabelTextView mine_username;
     private FriendAdapter friendAdapter;
     private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
@@ -66,10 +71,14 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
         //给RecyclerView设置适配器
         friend_recycler.setAdapter(friendAdapter);
+        initListener();
 
         return view;
     }
 
+    private void initListener(){
+        mine_username.setOnClickListener(this);
+    }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
@@ -82,15 +91,11 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()){
-            case R.id.home_city://地址
-                startActivity(new Intent(getActivity(),CityActivity.class));
+        switch (v.getId()){
+            case R.id.mine_username://地址
+                startActivity(new Intent(getActivity(), MyInfoActivity.class));
                 break;
-            case R.id.home_map://地图
-                break;
-            case R.id.home_search://搜索
-                break;
-        }*/
+        }
     }
 }
 

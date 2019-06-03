@@ -22,12 +22,19 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-@ContentView(R.layout.fragment_fragment_index)//加载的xml文件
+
+
 public class FragmentIndex extends Fragment implements View.OnClickListener {
-    @ViewInject(R.id.home_city)
+    private Unbinder unbinder;
+    @BindView(R.id.home_city)
     public TextView home_city;
-    @ViewInject(R.id.map)
+
+
+    @BindView(R.id.map)
     public MapView mMapView;
 
     /**
@@ -44,8 +51,9 @@ public class FragmentIndex extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = x.view().inject(this, inflater, container);
+        View view = inflater.inflate(R.layout.fragment_fragment_index, container, false);
+        //View view = x.view().inject(this, inflater, container);
+        unbinder = ButterKnife.bind(this, view);
         home_city.setOnClickListener(this);
         if (aMap == null) {
             aMap = mMapView.getMap();
