@@ -58,6 +58,6 @@ public interface FInfoMvp {
         //查询所有好友信息
         public void relation_my_all_qurPost(long uid);
         //查找好友关系
-        public void relation_my_one_qurPost(long uid,long fid);
+        public void relation_my_one_qurPost(long uid ,long fid);
     }
 }
