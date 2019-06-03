@@ -18,16 +18,14 @@ import org.xutils.x;
 
 @ContentView(R.layout.fragment_fragment_note)//加载的xml文件
 public class FragmentNote extends Fragment implements View.OnClickListener{
-    @ViewInject(R.id.home_city)
-    public TextView home_city;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = x.view().inject(this, inflater, container);
-        home_city=view.findViewById(R.id.home_city);
-        home_city.setOnClickListener(this);
+
         return view;
     }
 

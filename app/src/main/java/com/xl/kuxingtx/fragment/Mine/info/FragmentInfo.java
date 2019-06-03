@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 
 import com.xl.kuxingtx.R;
-import com.xl.kuxingtx.activity.myinfo.MyInfoActivity;
+import com.xl.kuxingtx.activity.myInfo.MyInfoActivity;
 import com.xl.kuxingtx.inter.FInfoMvp;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
 import com.xuexiang.xui.widget.textview.label.LabelTextView;

@@ -47,13 +47,14 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     private boolean isExit = false;
 
     @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler(){
+    public Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 403:
                     MainV2Activity.this.isExit = false;
                     break;
+
             }
             super.handleMessage(msg);
         }
