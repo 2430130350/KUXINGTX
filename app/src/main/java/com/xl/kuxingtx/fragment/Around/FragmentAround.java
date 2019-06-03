@@ -40,6 +40,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
     private TrendsAdapter trendsAdapter;
     private List<TrendsBean> trendsDatas = new ArrayList<TrendsBean>();
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
