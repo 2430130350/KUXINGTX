@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <com.xuexiang.xui.widget.imageview.RadiusImageView
-        android:id="@+id/radiusImageView3"
+        android:id="@+id/add_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radiusImageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/add_img" />
 
     <TextView
         android:id="@+id/username"
@@ -44,8 +44,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="一方通行、"
-        app:layout_constraintStart_toEndOf="@+id/radiusImageView3"
-        app:layout_constraintTop_toTopOf="@+id/radiusImageView3" />
+        app:layout_constraintStart_toEndOf="@+id/add_img"
+        app:layout_constraintTop_toTopOf="@+id/add_img" />
 
     <TextView
         android:id="@+id/time"
@@ -55,7 +55,7 @@
         android:layout_marginBottom="12dp"
         android:text="今天08:00"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/radiusImageView3"
-        app:layout_constraintStart_toEndOf="@+id/radiusImageView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/add_img"
+        app:layout_constraintStart_toEndOf="@+id/add_img" />
 
 </android.support.constraint.ConstraintLayout>

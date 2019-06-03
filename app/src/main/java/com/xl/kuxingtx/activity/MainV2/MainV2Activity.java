@@ -54,7 +54,6 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                 case 403:
                     MainV2Activity.this.isExit = false;
                     break;
-
             }
             super.handleMessage(msg);
         }
@@ -76,10 +75,10 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int index=0;
-                indexBtn.setTextColor(Color.rgb(221, 221, 221));
-                noteBtn.setTextColor(Color.rgb(221, 221, 221));
-                arroundBtn.setTextColor(Color.rgb(221, 221, 221));
-                mineBtn.setTextColor(Color.rgb(221, 221, 221));
+                indexBtn.setTextColor(Color.rgb(162, 162, 162));
+                noteBtn.setTextColor(Color.rgb(162, 162, 162));
+                arroundBtn.setTextColor(Color.rgb(162, 162, 162));
+                mineBtn.setTextColor(Color.rgb(162, 162, 162));
                 switch (checkedId){
                     case R.id.radio0:
                         index=0;

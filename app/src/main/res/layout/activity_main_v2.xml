@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
-            android:textColor="#DDDDDD"
+            android:textColor="#A2A2A2"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="首页" />
 
@@ -34,7 +34,7 @@
             android:drawableTop="@mipmap/ic_launcher"
             android:button="@null"
             android:gravity="center"
-            android:textColor="#DDDDDD"
+            android:textColor="#A2A2A2"
             android:text="随笔" />
 
         <RadioButton
@@ -47,14 +47,14 @@
             android:drawableTop="@mipmap/ic_launcher"
             android:gravity="center"
             android:text="周围"
-            android:textColor="#DDDDDD" />
+            android:textColor="#A2A2A2" />
 
         <RadioButton
             android:id="@+id/radio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#DDDDDD"
+            android:textColor="#A2A2A2"
             android:drawableTop="@mipmap/ic_launcher"
             android:button="@null"
             android:gravity="center"
