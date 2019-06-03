@@ -1,4 +1,4 @@
-package com.xl.kuxingtx.activity.myinfo;
+package com.xl.kuxingtx.activity.myInfo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

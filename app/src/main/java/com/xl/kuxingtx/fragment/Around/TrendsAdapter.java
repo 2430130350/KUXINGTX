@@ -17,6 +17,8 @@ public class TrendsAdapter extends BaseQuickAdapter<TrendsBean, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, TrendsBean item) {
         TextView trends_content = (TextView) helper.getView(R.id.trends_content);
-        RichText.from(item.getContent()).singleLoad(false).into(trends_content);
+        RichText.from(item.getPartialContent()).singleLoad(false).into(trends_content);
+
+        helper.addOnClickListener(R.id.trends_content);
     }
 }

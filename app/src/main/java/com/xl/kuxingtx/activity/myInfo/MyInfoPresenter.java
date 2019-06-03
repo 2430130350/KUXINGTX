@@ -1,4 +1,4 @@
-package com.xl.kuxingtx.activity.myinfo;
+package com.xl.kuxingtx.activity.myInfo;
 
 import com.xl.kuxingtx.inter.MyInfoMvp;
 

@@ -14,6 +14,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.FragmentAround;
@@ -26,6 +30,8 @@ import com.xl.kuxingtx.inter.MainV2Mvp;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import java.util.ArrayList;
 
 @ContentView(R.layout.activity_main_v2)
 public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
@@ -47,7 +53,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     private boolean isExit = false;
 
     @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler(){
+    public Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -75,10 +81,10 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int index=0;
-                indexBtn.setTextColor(Color.rgb(221, 221, 221));
-                noteBtn.setTextColor(Color.rgb(221, 221, 221));
-                arroundBtn.setTextColor(Color.rgb(221, 221, 221));
-                mineBtn.setTextColor(Color.rgb(221, 221, 221));
+                indexBtn.setTextColor(Color.rgb(162, 162, 162));
+                noteBtn.setTextColor(Color.rgb(162, 162, 162));
+                arroundBtn.setTextColor(Color.rgb(162, 162, 162));
+                mineBtn.setTextColor(Color.rgb(162, 162, 162));
                 switch (checkedId){
                     case R.id.radio0:
                         index=0;
