@@ -1,12 +1,7 @@
 package com.xl.kuxingtx.fragment.Mine.mine;
 
-
-
-
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.inter.FMineMvp;
-
-
 
 public class MinePresenter implements FMineMvp.Presenter {
     private FMineMvp.Model mineModel = new MineModel(this);
