@@ -30,7 +30,7 @@
         android:theme="@style/XUIAppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="KUXINGTX"/>
+            android:value="67522eebdaf26d34f36343f97c79a171"/>
         <activity android:name=".activity.MainV2.MainV2Activity"></activity>
         <activity
             android:name=".activity.Guide.GuideActivity"

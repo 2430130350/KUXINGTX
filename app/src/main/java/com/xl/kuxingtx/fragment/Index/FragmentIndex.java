@@ -14,9 +14,12 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.UiSettings;
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.MyLocationStyle;
 import com.xl.kuxingtx.R;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -33,7 +36,6 @@ public class FragmentIndex extends Fragment implements View.OnClickListener {
     @BindView(R.id.home_city)
     public TextView home_city;
 
-
     @BindView(R.id.map)
     public MapView mMapView;
 
@@ -43,9 +45,8 @@ public class FragmentIndex extends Fragment implements View.OnClickListener {
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
     public AMap aMap = null;
-
+    public boolean isFirstLoc = true;
     private LocationSource.OnLocationChangedListener mListener;
-
     //分界线
 
     @Nullable
@@ -73,6 +74,11 @@ public class FragmentIndex extends Fragment implements View.OnClickListener {
             //设置ui条件
         }
         UiSettings mUiSettings = aMap.getUiSettings();
+        //设置定位蓝点
+        MyLocationStyle myLocationStyle = new MyLocationStyle();
+        myLocationStyle.strokeWidth(1);
+        myLocationStyle.interval(2000);
+        aMap.setMyLocationStyle(myLocationStyle);
         mUiSettings.setMyLocationButtonEnabled(true);
         aMap.setLocationSource(mLocationSource);
         aMap.setMyLocationEnabled(true);
@@ -150,8 +156,17 @@ public class FragmentIndex extends Fragment implements View.OnClickListener {
         public void onLocationChanged(AMapLocation aMapLocation) {
             if (aMapLocation != null) {
                 if (aMapLocation.getErrorCode() == 0) {
-                    //可在其中解析amapLocation获取相应内容。
-                    mListener.onLocationChanged(aMapLocation);
+                    if(isFirstLoc)
+                    {
+                        //设置缩放级别
+                        aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                        //将地图移动到定位点
+                        aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(),
+                                aMapLocation.getLongitude())));
+                        //可在其中解析amapLocation获取相应内容。
+                        mListener.onLocationChanged(aMapLocation);
+                        isFirstLoc = false;
+                    }
                 } else Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() +
                         ", errInfo:" + aMapLocation.getErrorInfo());
             }
