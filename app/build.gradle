@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    // 完整引入
+    implementation 'com.github.goweii:AnyLayer:2.5.0'
     implementation('com.github.sendtion:XRichText:1.9.1') {
         exclude group: 'com.android.support'
         exclude group: 'com.github.bumptech.glide' //当你的项目使用Glide4.0以下版本时建议添加此项

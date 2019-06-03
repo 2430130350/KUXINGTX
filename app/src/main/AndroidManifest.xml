@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApplication"
@@ -22,12 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/XUIAppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.readNote.ReadNoteActivity"></activity>
+        <activity android:name=".activity.allowFriend.AllowFriendActivity"></activity>
+        <activity android:name=".activity.readNote.ReadNoteActivity" />
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="67522eebdaf26d34f36343f97c79a171" />
-        <service android:name="com.amap.api.location.APSService"></service>
+
+        <service android:name="com.amap.api.location.APSService" />
+
         <activity android:name=".activity.MainV2.MainV2Activity" />
         <activity android:name=".activity.readTrends.ReadTrendsActivity" />
         <activity android:name=".activity.myInfo.MyInfoActivity" />

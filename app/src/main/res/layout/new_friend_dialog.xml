@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#A2A2A3">
+
+    <com.xuexiang.xui.widget.edittext.ValidatorEditText
+        android:id="@+id/friend_id_edit"
+        style="@style/EditText.Normal"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="对方ID"
+
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:vet_errorMessage="出错"
+        app:vet_tipPosition="top" />
+
+    <com.xuexiang.xui.widget.edittext.ValidatorEditText
+        android:id="@+id/friend_nickname_edit"
+        style="@style/EditText.Normal"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        android:layout_width="200dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="备注昵称"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friend_id_edit"
+        app:vet_errorMessage="出错"
+        app:vet_tipPosition="top" />
+
+    <com.xuexiang.xui.widget.edittext.ValidatorEditText
+        android:id="@+id/friend_description_edit"
+        style="@style/EditText.Normal"
+        android:layout_width="200dp"
+        android:layout_margin="10dp"
+        android:layout_height="40dp"
+        android:textSize="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="简短描述"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friend_nickname_edit"
+        app:vet_errorMessage="出错"
+        app:vet_tipPosition="top" />
+
+    <com.xuexiang.xui.widget.button.ButtonView
+        style="@style/ButtonView.Green"
+        android:id="@+id/yes"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friend_description_edit"
+        android:text="添加"/>
+
+    <com.xuexiang.xui.widget.button.ButtonView
+        style="@style/ButtonView.Gray"
+        android:id="@+id/no"
+        android:layout_margin="20dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toBottomOf="@+id/friend_description_edit"
+        android:text="取消"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</android.support.constraint.ConstraintLayout>

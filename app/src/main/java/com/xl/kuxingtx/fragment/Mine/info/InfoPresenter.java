@@ -1,6 +1,6 @@
 package com.xl.kuxingtx.fragment.Mine.info;
 
-import com.xl.kuxingtx.friend;
+import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
 
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class InfoPresenter implements FInfoMvp.Presenter {
     }
 
     @Override
-    public void relation_my_one_qurSuccess(ArrayList<friend> friends) {
-        infoView.relation_my_one_qurSuccess(friends);
+    public void relation_my_one_qurSuccess(ArrayList<Friend> Friends) {
+        infoView.relation_my_one_qurSuccess(Friends);
     }
 }

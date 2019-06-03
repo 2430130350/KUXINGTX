@@ -20,6 +20,8 @@ import com.xl.kuxingtx.activity.readNote.ReadNoteActivity;
 import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
 import com.xl.kuxingtx.fragment.Around.TrendsAdapter;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
+import com.xl.kuxingtx.utils.CodeUtils;
+import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zzhoujay.richtext.RichText;
 
 import org.xutils.view.annotation.ContentView;
@@ -33,6 +35,12 @@ import java.util.List;
 public class FragmentNote extends Fragment implements View.OnClickListener{
     @ViewInject(R.id.note_recycler)
     private RecyclerView note_recycler;
+    @ViewInject(R.id.add_img)
+    private RadiusImageView add_img;
+    @ViewInject(R.id.write_img)
+    private RadiusImageView write_img;
+    @ViewInject(R.id.write)
+    private TextView write;
 
     private NoteAdapter noteAdapter;
     private List<NoteBean> noteDatas = new ArrayList<NoteBean>();
@@ -72,6 +80,9 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     }
 
     private void initListener(){
+        add_img.setOnClickListener(this);
+        write_img.setOnClickListener(this);
+        write.setOnClickListener(this);
         note_recycler.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -81,10 +92,14 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 super.onItemChildClick(adapter, view, position);
                 int itemViewId = view.getId();
+
                 switch (itemViewId) {
                     case R.id.note_content:
-                        //Toast.makeText(getActivity(), "点击了、", Toast.LENGTH_SHORT).show();
+                        //点击了内容区域、跳转到编辑随笔页面、
                         Intent intent = new Intent();
+                        //标识操作、
+                        intent.putExtra("code", CodeUtils.IS_UPDATE_NOTE);
+                        //传递内容信息、
                         intent.putExtra("note_content_str", noteDatas.get(position).getFormatContent());
                         intent.setClass(getActivity(), ReadNoteActivity.class);
                         startActivity(intent);
@@ -105,14 +120,17 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()){
-            case R.id.home_city://地址
-                startActivity(new Intent(getActivity(),CityActivity.class));
+        switch (v.getId()){
+            case R.id.add_img:
+            case R.id.write_img:
+            case R.id.write:
+                //点击了内容区域、跳转到编辑随笔页面、
+                Intent intent = new Intent();
+                //标识操作、
+                intent.putExtra("code", CodeUtils.IS_NEW_NOTE);
+                intent.setClass(getActivity(), ReadNoteActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.home_map://地图
-                break;
-            case R.id.home_search://搜索
-                break;
-        }*/
+        }
     }
 }

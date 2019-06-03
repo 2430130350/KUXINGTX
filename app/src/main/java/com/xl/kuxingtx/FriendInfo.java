@@ -11,34 +11,34 @@ public class FriendInfo {
         return friendInfo;
     }
 
-    private ArrayList<friend> friends=new ArrayList<friend>();
+    private ArrayList<Friend> Friends = new ArrayList<Friend>();
 
-    private ArrayList<friend> alreadyFriends=new ArrayList<friend>();
+    private ArrayList<Friend> alreadyFriends=new ArrayList<Friend>();
 
-    private ArrayList<friend> requestFriends=new ArrayList<friend>();
+    private ArrayList<Friend> requestFriends=new ArrayList<Friend>();
 
-    public ArrayList<friend> getFriends() {
-        return friends;
+    public ArrayList<Friend> getFriends() {
+        return Friends;
     }
 
-    public ArrayList<friend> getAlreadyFriends(){
+    public ArrayList<Friend> getAlreadyFriends(){
         return alreadyFriends;
     }
 
-    public ArrayList<friend> getRequestFriends(){
+    public ArrayList<Friend> getRequestFriends(){
         return requestFriends;
     }
 
-    public void setFriends(ArrayList<friend> friends) {
-        this.friends=friends;
+    public void setFriends(ArrayList<Friend> Friends) {
+        this.Friends = Friends;
     }
 
     public void sortFriends(){
-        for(int i=0;i<friends.size();i++){
-            friend tmpfriend=friends.get(i);
-            if(friends.get(i).getMconfirm()==1 && friends.get(i).getFconfirm()==1){
+        for(int i = 0; i< Friends.size(); i++){
+            Friend tmpfriend= Friends.get(i);
+            if(Friends.get(i).getMconfirm()==1 && Friends.get(i).getFconfirm()==1){
                 alreadyFriends.add(tmpfriend);
-            }else if(friends.get(i).getMconfirm()==0 &&friends.get(i).getFconfirm()==1){
+            }else if(Friends.get(i).getMconfirm()==0 && Friends.get(i).getFconfirm()==1){
                 requestFriends.add(tmpfriend);
             }
         }

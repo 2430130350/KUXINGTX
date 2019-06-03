@@ -5,7 +5,7 @@ import android.util.Log;
 import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.MyApplication;
 import com.xl.kuxingtx.UserInfo;
-import com.xl.kuxingtx.friend;
+import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
 
 import org.json.JSONArray;
@@ -16,8 +16,6 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InfoModel implements FInfoMvp.Model {
     private FInfoMvp.Presenter infoPresenter;
@@ -261,7 +259,7 @@ public class InfoModel implements FInfoMvp.Model {
                 try {
                     JSONObject jsonResult = new JSONObject(result);
                     if(jsonResult.optBoolean("isRelation_my_all_qurSuccess")){
-                        ArrayList<friend> friends=new ArrayList<friend>();
+                        ArrayList<Friend> Friends =new ArrayList<Friend>();
                         FriendInfo friendInfo = FriendInfo.getFriendInfo();
 
                         JSONObject object=new JSONObject(result);
@@ -274,11 +272,11 @@ public class InfoModel implements FInfoMvp.Model {
                             long fconfirm=objects.optLong("fconfirm");
                             String nick_name=objects.optString("nick_name");
                             String description=objects.optString("description");
-                            friend tmpfriend=new friend(uid,fid,mconfirm,fconfirm,nick_name,description);
-                            friends.add(tmpfriend);
+                            Friend tmpfriend=new Friend(uid,fid,mconfirm,fconfirm,nick_name,description);
+                            Friends.add(tmpfriend);
                         }
 
-                        friendInfo.setFriends(friends);
+                        friendInfo.setFriends(Friends);
                         /**
                          * 用户查询所有好友成功、
                          * */
@@ -321,7 +319,7 @@ public class InfoModel implements FInfoMvp.Model {
                 try {
                     JSONObject jsonResult = new JSONObject(result);
                     if(jsonResult.optBoolean("isRelation_my_one_qurSuccess")){
-                        ArrayList<friend> friends=new ArrayList<friend>();
+                        ArrayList<Friend> Friends =new ArrayList<Friend>();
                         FriendInfo friendInfo = FriendInfo.getFriendInfo();
 
                         JSONObject object=new JSONObject(result);
@@ -334,8 +332,8 @@ public class InfoModel implements FInfoMvp.Model {
                             long fconfirm=objects.optLong("fconfirm");
                             String nick_name=objects.optString("nick_name");
                             String description=objects.optString("description");
-                            friend tmpfriend=new friend(uid,fid,mconfirm,fconfirm,nick_name,description);
-                            friends.add(tmpfriend);
+                            Friend tmpfriend=new Friend(uid,fid,mconfirm,fconfirm,nick_name,description);
+                            Friends.add(tmpfriend);
                         }
 
                         /**
@@ -344,7 +342,7 @@ public class InfoModel implements FInfoMvp.Model {
 
                         Log.e("用户查询所有好友成功", result);
 
-                        infoPresenter.relation_my_one_qurSuccess(friends);
+                        infoPresenter.relation_my_one_qurSuccess(Friends);
                     }else{
                         Log.e("用户查询好友失败", result);
                     }

@@ -80,6 +80,36 @@
         app:layout_constraintStart_toEndOf="@+id/radiusImageView2"
         app:layout_constraintTop_toBottomOf="@+id/tv_marquee" />
 
+    <com.xuexiang.xui.widget.textview.label.LabelButtonView
+        android:id="@+id/friend_apply_btn"
+        style="@style/Button.Blue"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="8dp"
+        android:text="新的申请"
+        app:label_backgroundColor="#C2185B"
+        app:label_distance="15dp"
+        app:label_height="18dp"
+        app:label_orientation="RIGHT_TOP"
+        app:label_textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_friend_btn"
+        app:layout_constraintStart_toEndOf="@+id/new_friend_btn" />
+
+    <com.xuexiang.xui.widget.textview.label.LabelButtonView
+        android:id="@+id/new_friend_btn"
+        style="@style/Button.Blue"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
+        android:text="添加好友"
+        app:label_backgroundColor="#C2185B"
+        app:label_distance="15dp"
+        app:label_height="18dp"
+        app:label_orientation="RIGHT_TOP"
+        app:label_textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintStart_toStartOf="@+id/mine_username" />
+
     <include
         android:id="@+id/include"
         layout="@layout/friend_list"

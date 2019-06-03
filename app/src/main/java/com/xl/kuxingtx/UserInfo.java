@@ -6,7 +6,7 @@ public class UserInfo {
     private int id = -1;
     private int records = -1;
     private int treature = -1;
-    private boolean isLogined = true;           //为了测试此处进行了修改
+    private boolean isLogined = false;           //为了测试此处进行了修改
 
 
     private static UserInfo userInfo = new UserInfo();

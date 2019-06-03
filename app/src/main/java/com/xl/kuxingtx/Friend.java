@@ -1,6 +1,6 @@
 package com.xl.kuxingtx;
 
-public class friend {
+public class Friend {
     private long uid;           //本用户ID
     private long fid;           //好友的ID本体
     private long mconfirm;      //自己对好友的接受状态 1为接受，0位不接受
@@ -8,9 +8,9 @@ public class friend {
     private String nick_name;   //自己对好友的nick_name
     private String description; //自己对好友的描述
 
-    public friend(){}
+    public Friend(){}
 
-    public friend(long uid,long fid,long mconfirm, long fconfirm,String nick_name,String description){
+    public Friend(long uid, long fid, long mconfirm, long fconfirm, String nick_name, String description){
         this.uid=uid;
         this.fid=fid;
         this.mconfirm=mconfirm;

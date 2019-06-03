@@ -1,6 +1,6 @@
 package com.xl.kuxingtx.inter;
 
-import com.xl.kuxingtx.friend;
+import com.xl.kuxingtx.Friend;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public interface FInfoMvp {
         //查询所有好友信息
         public void relation_my_all_qurSuccess();
         //查找好友关系
-        public void relation_my_one_qurSuccess(ArrayList<friend> friends);
+        public void relation_my_one_qurSuccess(ArrayList<Friend> Friends);
     }
     public interface Presenter{
         //查询用户信息功能
@@ -42,7 +42,7 @@ public interface FInfoMvp {
         public void relation_my_all_qurSuccess();
         //查找好友关系
         public void relation_my_one_qur(long uid,long fid);
-        public void relation_my_one_qurSuccess(ArrayList<friend> friends);
+        public void relation_my_one_qurSuccess(ArrayList<Friend> Friends);
     }
     public interface Model{
         //查询用户信息功能
