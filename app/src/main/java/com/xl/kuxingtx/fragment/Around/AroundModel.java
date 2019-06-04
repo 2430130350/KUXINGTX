@@ -52,6 +52,7 @@ public class AroundModel implements FAroundMvp.Model {
         }*/
         //构建RequestParams对象，传入请求的服务器地址URL
         RequestParams params = new RequestParams(MyApplication.webUri_upload_trends_post);
+
         params.setAsJsonContent(true);
         List<KeyValue> list = new ArrayList<>();
 //        list.add(new KeyValue("uid", trendsBean.getUid());
