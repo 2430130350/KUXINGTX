@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
+import com.xl.kuxingtx.activity.allowFriend.AllowFriendActivity;
 import com.xl.kuxingtx.activity.myInfo.MyInfoActivity;
 import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
@@ -164,6 +165,8 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
                        .show();
                break;
            case R.id.friend_apply_btn:
+               Intent intent = new Intent(this.getContext(), AllowFriendActivity.class);
+               startActivity(intent);
                break;
         }
     }

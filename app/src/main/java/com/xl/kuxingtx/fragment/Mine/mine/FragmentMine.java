@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.activity.MainV2.MainV2Activity;
 import com.xl.kuxingtx.inter.FMineMvp;
 import com.xl.kuxingtx.utils.CodeUtils;
@@ -133,6 +134,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         Toast.makeText(getActivity(), "登录成功、", Toast.LENGTH_SHORT).show();
         MainV2Activity mainV2Activity = (MainV2Activity)getActivity();
         mainV2Activity.mHandler.sendEmptyMessage(CodeUtils.IS_LOGIN);
+
     }
 
     @Override
@@ -142,6 +144,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         return_sign_in.performClick();
         input_password.setText("");
         reinput_password.setText("");
+
     }
 
     @Override
