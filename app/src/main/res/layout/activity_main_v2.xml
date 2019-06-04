@@ -23,7 +23,7 @@
             android:button="@null"
             android:gravity="center"
             android:textColor="#A2A2A2"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/home"
             android:text="首页" />
 
         <RadioButton
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/radio1"
             android:button="@null"
             android:gravity="center"
             android:textColor="#A2A2A2"
@@ -44,7 +44,7 @@
             android:layout_alignTop="@+id/bottom_bar"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/radio2"
             android:gravity="center"
             android:text="周围"
             android:textColor="#A2A2A2" />
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#A2A2A2"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/radio3"
             android:button="@null"
             android:gravity="center"
             android:text="我的" />

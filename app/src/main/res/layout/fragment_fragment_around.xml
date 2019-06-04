@@ -14,7 +14,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:src="@drawable/write"
+        android:src="@drawable/note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -45,7 +45,7 @@
                 android:id="@+id/radiusImageView"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:src="@drawable/pic1"
+                android:src="@drawable/bg1"
                 app:riv_border_color="@color/xui_config_color_gray_6"
                 app:riv_border_width="1px"
                 app:riv_corner_radius="10dp"

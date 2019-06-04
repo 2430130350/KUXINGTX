@@ -125,16 +125,16 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
         poiSearch.setOnPoiSearchListener(new PoiSearch.OnPoiSearchListener() {
             @Override
             public void onPoiSearched(PoiResult poiResult, int i) {
+                Marker marker;
                 ArrayList<PoiItem> poiItemArrayList=poiResult.getPois();
                 for(int j=0;j<10;j++){
-                    Marker marker = aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
+                    marker  = aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
                             .get(j).getLatLonPoint().getLatitude(),poiItemArrayList
                             .get(j).getLatLonPoint().getLongitude()))
                             .title(poiItemArrayList.get(j).getTitle())
                             .snippet(poiItemArrayList.get(j).getSnippet()));
                     marker.showInfoWindow();
                 }
-                //aMap.setInfoWindowAdapter(minforWindow);
             }
 
             @Override
@@ -153,34 +153,6 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
         }
     }
 
-    //定义展示板样式
-    public AMap.InfoWindowAdapter minforWindow = new AMap.InfoWindowAdapter() {
-        private View infoWindow = null;
-    @Override
-    public View getInfoWindow(Marker marker) {
-        if(infoWindow == null) {
-            infoWindow = LayoutInflater.from(FragmentIndex.super.getContext()).inflate
-                    (R.layout.fragment_fragment_index,null);
-            TextView textView = infoWindow.findViewById(R.id.infowindow);
-            textView.setText(marker.getId());
-            textView.setText(marker.getTitle());
-        }
-        //render(marker, infoWindow);
-        return infoWindow;
-    }
-
-    /**
-     * 自定义infowinfow窗口
-     */
-    public void render(Marker marker, View view) {
-        //如果想修改自定义Infow中内容，请通过view找到它并修改
-
-        }
-    @Override
-    public View getInfoContents(Marker marker) {
-        return null;
-    }
-};
     @Override
     public void onClick(View v) {
 /*        switch (v.getId()){
@@ -228,16 +200,14 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                     if(isFirstLoc)
                     {
                         //设置缩放级别
-                        aMap.moveCamera(CameraUpdateFactory.zoomTo(17));
+                        aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
                         //将地图移动到定位点
                         aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(),
                                 aMapLocation.getLongitude())));
                         //可在其中解析amapLocation获取相应内容。
-
-                        UserInfo.getUserInfo().setLocation("");
-                        mListener.onLocationChanged(aMapLocation);
                         isFirstLoc = false;
-
+                        mListener.onLocationChanged(aMapLocation);
+                        UserInfo.getUserInfo().setLocation(aMapLocation.getAddress());
                     }
                 } else Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() +
                         ", errInfo:" + aMapLocation.getErrorInfo());

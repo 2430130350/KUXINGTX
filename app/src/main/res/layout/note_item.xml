@@ -43,7 +43,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/note"
+        android:src="@drawable/airplane"
         app:layout_constraintStart_toEndOf="@+id/line2"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_border_width="0px" />
@@ -55,7 +55,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="测试文本、"
+        android:text="富士山一日游"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/note_img"
