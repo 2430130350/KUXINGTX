@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,6 +29,7 @@ import com.xl.kuxingtx.inter.ReadNoteMvp;
 import com.xl.kuxingtx.utils.FileUtilcll;
 
 import com.xl.kuxingtx.utils.RealPathFromUriUtils;
+import com.xl.kuxingtx.utils.CodeUtils;
 
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zzhoujay.richtext.RichText;
@@ -58,9 +60,14 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
     private RichEditor content_editor;
     @ViewInject(R.id.add_img)
     private RadiusImageView add_img;
+    @ViewInject(R.id.complete)
+    private TextView complete;
 
     //用于临时保存content_editor中的text、
     private String content_text = "";
+
+    //用于标识本次编辑是什么操作、
+    private int code = -1;
 
 
     public static final int RC_CHOOSE_PHOTO = 1;
@@ -80,8 +87,18 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         RichText.initCacheDir(this);
 
         Intent intent = getIntent();
-        String note_content_str = intent.getStringExtra("note_content_str");
-        this.content_text = note_content_str;
+        code = intent.getIntExtra("code", -1);
+        switch (code){
+            case CodeUtils.IS_UPDATE_NOTE:
+                String note_content_str = intent.getStringExtra("note_content_str");
+                this.content_text = note_content_str;
+                break;
+            case CodeUtils.IS_NEW_NOTE:
+                break;
+            case CodeUtils.IS_NEW_TRENDS:
+                break;
+        }
+
         //updateRichText(trends_content_str);
 
         //初始化富文本编辑框、
@@ -91,12 +108,13 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, RC_CHOOSE_PHOTO);
         }
 
-        content_editor.setHtml(note_content_str);
+        content_editor.setHtml(content_text);
         initListener();
     }
 
     private void initListener(){
         add_img.setOnClickListener(this);
+        complete.setOnClickListener(this);
         content_editor. setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override
             public void onTextChange(String text) {
@@ -173,15 +191,13 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        List<String> stringList = new ArrayList<String>();
         switch (v.getId()){
             case R.id.add_img:
-
-                List<String> stringList = new ArrayList<String>();
                 stringList.add("拍照");
                 stringList.add("从相册选择");
-
-                final OptionBottomDialog optionBottomDialog = new OptionBottomDialog(ReadNoteActivity.this, stringList);
-                optionBottomDialog.setItemClickListener(new AdapterView.OnItemClickListener() {
+                final OptionBottomDialog addImgDialog = new OptionBottomDialog(ReadNoteActivity.this, stringList);
+                addImgDialog.setItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         switch (position){
@@ -192,11 +208,28 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                                 choosePhoto();
                                 break;
                         }
-                        optionBottomDialog.dismiss();
-
+                        addImgDialog.dismiss();
                     }
                 });
-
+                break;
+            case R.id.complete:
+                stringList.add("发表为动态");
+                stringList.add("保存为随笔");
+                final OptionBottomDialog completeDialog = new OptionBottomDialog(ReadNoteActivity.this, stringList);
+                completeDialog.setItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        switch (position){
+                            case 0:
+                                takePhoto();
+                                break;
+                            case 1:
+                                choosePhoto();
+                                break;
+                        }
+                        completeDialog.dismiss();
+                    }
+                });
                 break;
         }
     }

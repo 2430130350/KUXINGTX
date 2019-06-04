@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +20,11 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lidroid.xutils.ViewUtils;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.activity.MainV2.MainV2Activity;
+import com.xl.kuxingtx.activity.readNote.ReadNoteActivity;
 import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
 import com.xl.kuxingtx.fragment.Mine.mine.FragmentMine;
 import com.xl.kuxingtx.inter.FAroundMvp;
+import com.xl.kuxingtx.utils.CodeUtils;
 import com.zzhoujay.richtext.RichText;
 import com.chad.library.adapter.base.BaseQuickAdapter.OnItemChildClickListener;
 
@@ -36,6 +39,8 @@ import java.util.List;
 public class FragmentAround extends Fragment implements View.OnClickListener, FAroundMvp.View{
     @ViewInject(R.id.trends_recycler)
     private RecyclerView trends_recycler;
+    @ViewInject(R.id.new_trends)
+    private FloatingActionButton new_trends;
 
     private TrendsAdapter trendsAdapter;
     private List<TrendsBean> trendsDatas = new ArrayList<TrendsBean>();
@@ -77,6 +82,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
     }
 
     private void initListener(){
+        new_trends.setOnClickListener(this);
         trends_recycler.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -111,15 +117,16 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
 
     @Override
     public void onClick(View v) {
-/*        switch (v.getId()){
-            case R.id.home_city://地址
-                startActivity(new Intent(getActivity(),CityActivity.class));
+        switch (v.getId()){
+            case R.id.new_trends://地址
+                //新建动态、
+                Intent intent = new Intent();
+                //标识操作、
+                intent.putExtra("code", CodeUtils.IS_NEW_TRENDS);
+                intent.setClass(getActivity(), ReadNoteActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.home_map://地图
-                break;
-            case R.id.home_search://搜索
-                break;
-        }*/
+        }
     }
 
 }

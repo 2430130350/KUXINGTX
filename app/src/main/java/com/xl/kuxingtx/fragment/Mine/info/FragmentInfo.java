@@ -1,6 +1,7 @@
 package com.xl.kuxingtx.fragment.Mine.info;
 
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,16 +9,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.Toast;
 
 
+import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
+import com.xl.kuxingtx.activity.allowFriend.AllowFriendActivity;
 import com.xl.kuxingtx.activity.myInfo.MyInfoActivity;
+import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.inter.FInfoMvp;
+import com.xuexiang.xui.widget.edittext.ValidatorEditText;
 import com.xuexiang.xui.widget.textview.MarqueeTextView;
+import com.xuexiang.xui.widget.textview.label.LabelButtonView;
 import com.xuexiang.xui.widget.textview.label.LabelTextView;
 
 
@@ -30,6 +38,10 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import per.goweii.anylayer.AnimHelper;
+import per.goweii.anylayer.AnyLayer;
+import per.goweii.anylayer.LayerManager;
+
 @ContentView(R.layout.fragment_fragment_info)//加载的xml文件
 public class FragmentInfo extends Fragment implements View.OnClickListener, FInfoMvp.View{
     private FInfoMvp.Presenter infoPresenter = new InfoPresenter(this);
@@ -39,14 +51,15 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private RecyclerView friend_recycler;
     @ViewInject(R.id.mine_username)
     private LabelTextView mine_username;
+    @ViewInject(R.id.new_friend_btn)
+    private LabelButtonView new_friend_btn;
+    @ViewInject(R.id.friend_apply_btn)
+    private LabelButtonView friend_apply_btn;
     private FriendAdapter friendAdapter;
     private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
 
 
-
-    public FragmentInfo() {
-    }
 
     @Nullable
     @Override
@@ -83,6 +96,8 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
    private void initListener(){
         mine_username.setOnClickListener(this);
+        new_friend_btn.setOnClickListener(this);
+        friend_apply_btn.setOnClickListener(this);
     }
 
     @Override
@@ -97,9 +112,62 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     @Override
     public void onClick(View v) {
        switch (v.getId()){
-            case R.id.mine_username://进入个人信息详情页面、
-                startActivity(new Intent(getActivity(), MyInfoActivity.class));
-                break;
+           case R.id.mine_username://进入个人信息详情页面、
+               startActivity(new Intent(getActivity(), MyInfoActivity.class));
+               break;
+           case R.id.new_friend_btn:
+               AnyLayer.with(this.getActivity())
+                       .contentView(R.layout.new_friend_dialog)
+                       .gravity(Gravity.CENTER)
+                       .onVisibleChangeListener(new LayerManager.OnVisibleChangeListener() {
+                           @Override
+                           public void onShow(AnyLayer anyLayer) {
+                               /*EditText editText = anyLayer.getView(R.id.et_dialog_content);
+                               anyLayer.compatSoftInput(editText);*/
+                           }
+
+                           @Override
+                           public void onDismiss(AnyLayer anyLayer) {
+                               anyLayer.removeSoftInput();
+                           }
+                       })
+                       .contentAnim(new LayerManager.IAnim() {
+                           @Override
+                           public Animator inAnim(View content) {
+                               return AnimHelper.createZoomAlphaInAnim(content);
+                           }
+
+                           @Override
+                           public Animator outAnim(View content) {
+                               return AnimHelper.createZoomAlphaOutAnim(content);
+                           }
+                       })
+                       .onClickToDismiss(R.id.no)
+                       .onClick(R.id.yes, new LayerManager.OnLayerClickListener() {
+                           @Override
+                           public void onClick(AnyLayer anyLayer, View v) {
+                               anyLayer.dismiss();
+                               ValidatorEditText friend_id_edit = anyLayer.getView(R.id.friend_id_edit);
+                               ValidatorEditText friend_nickname_edit = anyLayer.getView(R.id.friend_nickname_edit);
+                               ValidatorEditText friend_description_edit = anyLayer.getView(R.id.friend_description_edit);
+                               long friend_id = Long.parseLong(friend_id_edit.getInputValue());
+                               String friend_nickname = friend_nickname_edit.getInputValue();
+                               String friend_description = friend_description_edit.getInputValue();
+
+                               long my_id = UserInfo.getUserInfo().getId();
+                               infoPresenter.relation_my_all_qur(my_id);
+                               FriendInfo.getFriendInfo().sortFriends();
+                               infoPresenter.relation_add(my_id, friend_id, friend_nickname, friend_description);
+                               /*EditText et = anyLayer.getView(R.id.et_dialog_content);
+                               Toast.makeText(FullScreenActivity.this, et.getText().toString(), Toast.LENGTH_SHORT).show();*/
+                           }
+                       })
+                       .show();
+               break;
+           case R.id.friend_apply_btn:
+               Intent intent = new Intent(this.getContext(), AllowFriendActivity.class);
+               startActivity(intent);
+               break;
         }
     }
 
@@ -115,7 +183,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
     @Override
     public void relation_addSuccess() {
-
+        Toast.makeText(getActivity(), "发起申请成功、", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -134,9 +202,10 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     }
 
     @Override
-    public void relation_my_one_qurSuccess() {
+    public void relation_my_one_qurSuccess(ArrayList<Friend> Friends) {
 
     }
+
 }
 
 

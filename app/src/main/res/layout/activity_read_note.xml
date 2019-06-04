@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.readNote.ReadNoteActivity">
 
+
+
     <com.xuexiang.xui.widget.actionbar.TitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
@@ -22,7 +24,21 @@
         app:tb_barHeight="45dp"
         app:tb_dividerColor="@color/xui_config_color_red"
         app:tb_leftText="返回"
-        app:tb_sideTextPadding="20dp" />
+        app:tb_sideTextPadding="20dp" >
+    </com.xuexiang.xui.widget.actionbar.TitleBar>
+
+    <TextView
+        android:id="@+id/complete"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:text="完成"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+        app:layout_constraintEnd_toEndOf="@+id/titleBar"
+        app:layout_constraintTop_toTopOf="@id/titleBar"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="14dp"/>
 
     <com.xuexiang.xui.widget.imageview.RadiusImageView
         android:id="@+id/userImg"

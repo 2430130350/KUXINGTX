@@ -4,14 +4,8 @@ import com.xl.kuxingtx.Friend;
 
 import java.util.ArrayList;
 
-public interface FInfoMvp {
+public interface AllowFriendMvp {
     public interface View{
-        //查询用户信息功能
-        public void query_infoSuccess();
-        //修改用户信息功能
-        public void modify_infoSuccess();
-        //添加好友功能
-        public void relation_addSuccess();
         //确认好友功能
         public void relation_confirmSuccess();
         //删除好友功能
@@ -22,15 +16,6 @@ public interface FInfoMvp {
         public void relation_my_one_qurSuccess(ArrayList<Friend> Friends);
     }
     public interface Presenter{
-        //查询用户信息功能
-        public void query_info(String userName,String password);
-        public void query_infoSuccess();
-        //修改用户信息功能
-        public void modify_info(String ouserName,String opassword,String nuserName,String npassword);
-        public void modify_infoSuccess();
-        //添加好友功能
-        public void relation_add(long uid,long fid,String nick_name,String description);
-        public void relation_addSuccess();
         //确认好友功能
         public void relation_confirm(long uid,long fid,String nick_name,String description);
         public void relation_confirmSuccess();
@@ -45,12 +30,6 @@ public interface FInfoMvp {
         public void relation_my_one_qurSuccess(ArrayList<Friend> Friends);
     }
     public interface Model{
-        //查询用户信息功能
-        public void query_infoPost(String userName,String password);
-        //修改用户信息功能
-        public void modify_infoPost(String ouserName,String opassword,String nuserName,String npassword);
-        //添加好友功能
-        public void relation_addPost(long uid,long fid,String nick_name,String description);
         //确认好友功能
         public void relation_confirmPost(long uid,long fid,String nick_name,String description);
         //删除好友功能

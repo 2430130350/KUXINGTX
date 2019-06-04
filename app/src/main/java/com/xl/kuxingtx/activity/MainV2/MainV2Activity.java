@@ -1,11 +1,14 @@
 package com.xl.kuxingtx.activity.MainV2;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -14,10 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.poisearch.PoiResult;
-import com.amap.api.services.poisearch.PoiSearch;
+
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.FragmentAround;
@@ -26,6 +26,7 @@ import com.xl.kuxingtx.fragment.Mine.info.FragmentInfo;
 import com.xl.kuxingtx.fragment.Mine.mine.FragmentMine;
 import com.xl.kuxingtx.fragment.Note.FragmentNote;
 import com.xl.kuxingtx.inter.MainV2Mvp;
+import com.xl.kuxingtx.utils.CodeUtils;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -52,6 +53,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     private MainV2Mvp.Presenter mainPresenter = new MainV2Presenter(this);
     private boolean isExit = false;
 
+
     @SuppressLint("HandlerLeak")
     public Handler mHandler = new Handler(){
         @Override
@@ -60,10 +62,18 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                 case 403:
                     MainV2Activity.this.isExit = false;
                     break;
+                case CodeUtils.IS_LOGIN:
+                    Fragment fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,4);
+                    fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
+                    fragmentStatePagerAdapter.finishUpdate(layout_content);
+                    fragmentStatePagerAdapter.notifyDataSetChanged();
+                    break;
             }
             super.handleMessage(msg);
         }
     };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +109,12 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                         arroundBtn.setTextColor(Color.rgb(0,0,0));
                         break;
                     case R.id.radio3:
-                        index=3;
+                        if(UserInfo.getUserInfo().isLogined()){
+                            index = 4;
+                        }
+                        else {
+                            index = 3;
+                        }
                         mineBtn.setTextColor(Color.rgb(0,0,0));
                         break;
                 }
@@ -110,9 +125,15 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
         });
         fragmentStatePagerAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
+
             @Override
+            public int getItemPosition(Object object) {
+                // TODO Auto-generated method stub
+                return PagerAdapter.POSITION_NONE;
+            }
+                @Override
             public int getCount() {
-                return 4;
+                return 5;
             }
 
             @Override
@@ -120,24 +141,27 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                 Fragment fragment=null;
                 switch (position){
                     case 0://首页
-                        fragment=new FragmentIndex();
+                        fragment = new FragmentIndex();
                         break;
                     case 1://随笔
-                        fragment=new FragmentNote();
+                        fragment = new FragmentNote();
                         break;
                     case 2://周围
-                        fragment=new FragmentAround();
+                        fragment = new FragmentAround();
                         break;
                     case 3://我的
                         if(UserInfo.getUserInfo().isLogined()){
                             fragment = new FragmentInfo();
                         }
                         else{
-                            fragment=new FragmentMine();
+                            fragment = new FragmentMine();
                         }
                         break;
+                    case 4:
+                        fragment = new FragmentInfo();
+                        break;
                     default:
-                        fragment=new FragmentIndex();
+                        fragment = new FragmentIndex();
                         break;
                 }
                 return fragment;

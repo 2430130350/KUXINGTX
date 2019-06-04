@@ -11,9 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
+import com.xl.kuxingtx.activity.MainV2.MainV2Activity;
 import com.xl.kuxingtx.inter.FMineMvp;
+import com.xl.kuxingtx.utils.CodeUtils;
 import com.xuexiang.xui.widget.button.ButtonView;
 import com.xuexiang.xui.widget.edittext.ValidatorEditText;
 
@@ -78,6 +82,7 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
 
     @Override
     public void onClick(View v) {
+        String username, password, rePassword;
         switch (v.getId()){
             case R.id.to_sign_up://地址
                 //隐藏登录、
@@ -103,17 +108,42 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
                 sign_up_text.setVisibility(View.GONE);
                 return_sign_in.setVisibility(View.GONE);
                 break;
+            case R.id.sign_up_btn:
+                username = input_username.getInputValue();
+                password = input_password.getInputValue();
+                rePassword = reinput_password.getInputValue();
+                if(password.equals(rePassword)){
+                    minePresenter.register(username, password);
+                }
+                else {
+                    Toast.makeText(getActivity(), "密码不一致、", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.sign_in_btn:
+                username = input_username.getInputValue();
+                password = input_password.getInputValue();
+                minePresenter.login(username, password);
+                break;
         }
     }
 
 
     @Override
     public void loginSucess() {
+        //登录成功、跳转到个人信息页面、
+        Toast.makeText(getActivity(), "登录成功、", Toast.LENGTH_SHORT).show();
+        MainV2Activity mainV2Activity = (MainV2Activity)getActivity();
+        mainV2Activity.mHandler.sendEmptyMessage(CodeUtils.IS_LOGIN);
 
     }
 
     @Override
     public void registerSuccess() {
+        //弹回登录界面、要求重新登录、
+        Toast.makeText(getActivity(), "注册成功、请输入登录、", Toast.LENGTH_SHORT).show();
+        return_sign_in.performClick();
+        input_password.setText("");
+        reinput_password.setText("");
 
     }
 
