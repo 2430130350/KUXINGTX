@@ -19,6 +19,7 @@ public class MyApplication extends Application {
     public static String webUri_relation_my_all_qur=httpHead + "relation_my_all_qur/";
     public static String webUri_relation_my_one_qur=httpHead + "relation_my_one_qur/";
     public static String webUri_upload_trends_post=httpHead + "trends_my_add/";
+    public static String webUri_load_trends_post=httpHead + "trends_my_all_quer/";
 
 
     @Override

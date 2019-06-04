@@ -1,7 +1,7 @@
 package com.xl.kuxingtx.activity.readNote;
 
 import android.Manifest;
-import android.animation.Animator;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,12 +25,14 @@ import android.widget.Toast;
 
 import com.longsh.optionframelibrary.OptionBottomDialog;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.activity.myInfo.MyInfoActivity;
 import com.xl.kuxingtx.inter.ReadNoteMvp;
 import com.xl.kuxingtx.utils.FileUtilcll;
 
 import com.xl.kuxingtx.utils.RealPathFromUriUtils;
 import com.xl.kuxingtx.utils.CodeUtils;
 
+import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zzhoujay.richtext.RichText;
 
@@ -56,6 +58,8 @@ import jp.wasabeef.richeditor.RichEditor;
 public class ReadNoteActivity extends AppCompatActivity implements View.OnClickListener, ReadNoteMvp.View {
     private ReadNoteMvp.Presenter readNotePresenter = new ReadNotePresenter(this);
 
+    @ViewInject(R.id.titleBar)
+    private TitleBar titleBar;
     @ViewInject(R.id.content_editor)
     private RichEditor content_editor;
     @ViewInject(R.id.add_img)
@@ -120,6 +124,12 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
             public void onTextChange(String text) {
                 // Do Something
                 content_text = text;
+            }
+        });
+        titleBar.setLeftClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReadNoteActivity.this.finish();
             }
         });
     }
@@ -226,6 +236,15 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                                 break;
                             case 1:
                                 //保存为随笔、
+                                //判断是随笔的修改还是随笔的新建、
+                                switch (ReadNoteActivity.this.code){
+                                    case CodeUtils.IS_NEW_NOTE:
+                                        readNotePresenter.saveNote(content_text);
+                                        break;
+                                    case CodeUtils.IS_UPDATE_NOTE:
+                                        readNotePresenter.saveNote(content_text, position);
+                                        break;
+                                }
 
                                 break;
                         }
@@ -236,4 +255,15 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @Override
+    public void uploadTrendsSuccess() {
+        Toast.makeText(this, "上传成功", Toast.LENGTH_SHORT).show();
+        this.finish();
+    }
+
+    @Override
+    public void saveNoteSuccess() {
+        Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
+        this.finish();
+    }
 }

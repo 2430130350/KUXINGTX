@@ -6,8 +6,10 @@ import com.xl.kuxingtx.MyApplication;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.inter.FAroundMvp;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
 import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
 import org.xutils.http.body.MultipartBody;
@@ -18,6 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AroundModel implements FAroundMvp.Model {
+    private FAroundMvp.Presenter arroundPresenter;
+
+    public AroundModel(FAroundMvp.Presenter arroundPresenter){
+        this.arroundPresenter = arroundPresenter;
+    }
+
     @Override
     public void loginPost(UserInfo userInfo) {
 
@@ -33,4 +41,53 @@ public class AroundModel implements FAroundMvp.Model {
 
     }
 
+
+    public void loadTrendsPost(){
+        RequestParams params = new RequestParams(MyApplication.webUri_load_trends_post);
+        UserInfo userInfo = UserInfo.getUserInfo();
+        params.addBodyParameter("uid", "" + userInfo.getId());
+        params.addHeader("head","android"); //为当前请求添加一个头
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            private List<TrendsBean> trendsBeans = new ArrayList<TrendsBean>();
+
+            @Override
+            public void onSuccess(String result) {
+                //解析result
+                try {
+                    JSONObject jsonResult = new JSONObject(result);
+                    if(jsonResult.optBoolean("isLoginSuccess")){
+                        /**
+                         * 登录成功、
+                         * */
+                        JSONArray array=jsonResult.optJSONArray("jsonContent");
+                        for(int i=0;i<array.length();i++){
+                            JSONObject objects=array.optJSONObject(i);
+                            long id = jsonResult.optLong("uid");
+                            String content = jsonResult.optString("content");
+
+                            TrendsBean trendsBean = new TrendsBean();
+                            trendsBean.setUid(id);
+                            trendsBean.setContent(content);
+                            trendsBeans.add(trendsBean);
+                        }
+
+
+                        arroundPresenter.loadTrendsSuccess(trendsBeans);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
 }

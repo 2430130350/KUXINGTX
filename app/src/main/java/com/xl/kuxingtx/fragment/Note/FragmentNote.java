@@ -15,11 +15,14 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lidroid.xutils.ViewUtils;
+import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.activity.readNote.ReadNoteActivity;
 import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
 import com.xl.kuxingtx.fragment.Around.TrendsAdapter;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
+import com.xl.kuxingtx.fragment.Mine.info.FriendBean;
 import com.xl.kuxingtx.utils.CodeUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zzhoujay.richtext.RichText;
@@ -53,7 +56,7 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
         //必须先调用RichText.initCacheDir()方法、不然报错、
         RichText.initCacheDir(this.getActivity());
 
-        NoteBean noteBean;
+/*        NoteBean noteBean;
         for (int i = 0; i < 15; i++) {
             noteBean = new NoteBean();
             noteBean.setContent(
@@ -64,7 +67,7 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                             "\n" +
                             "　　更重要的是，美国政府正动用国家力量对华为开展致力于让其关门的全面打压，而四件包裹错投的终极地都是美国，这加重了人们对联邦快递这样做是受到美国政府操纵的怀疑。");
             noteDatas.add(noteBean);
-        }
+        }*/
         //创建布局管理
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -75,8 +78,18 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
 
         //给RecyclerView设置适配器
         note_recycler.setAdapter(noteAdapter);
+        initData();
         initListener();
         return view;
+    }
+
+    private void initData(){
+        List<NoteBean> tmpNoteBeans = UserInfo.getUserInfo().getNoteBeans();
+        this.noteDatas.clear();
+        for(int i = 0; i<tmpNoteBeans.size(); i++){
+            NoteBean tmpNoteBean = tmpNoteBeans.get(i);
+            this.noteDatas.add(tmpNoteBean);
+        }
     }
 
     private void initListener(){
@@ -132,5 +145,11 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        noteAdapter.notifyDataSetChanged();
     }
 }

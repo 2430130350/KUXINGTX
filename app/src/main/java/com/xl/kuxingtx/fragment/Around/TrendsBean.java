@@ -2,6 +2,7 @@ package com.xl.kuxingtx.fragment.Around;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TrendsBean {
+public class TrendsBean implements Serializable {
     private String username;
     private long uid;
 

@@ -11,22 +11,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
-import com.lidroid.xutils.ViewUtils;
+
 import com.xl.kuxingtx.R;
-import com.xl.kuxingtx.activity.MainV2.MainV2Activity;
+
 import com.xl.kuxingtx.activity.readNote.ReadNoteActivity;
 import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
-import com.xl.kuxingtx.fragment.Mine.mine.FragmentMine;
+
 import com.xl.kuxingtx.inter.FAroundMvp;
 import com.xl.kuxingtx.utils.CodeUtils;
 import com.zzhoujay.richtext.RichText;
-import com.chad.library.adapter.base.BaseQuickAdapter.OnItemChildClickListener;
+
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -37,6 +35,8 @@ import java.util.List;
 
 @ContentView(R.layout.fragment_fragment_around)//加载的xml文件
 public class FragmentAround extends Fragment implements View.OnClickListener, FAroundMvp.View{
+    private FAroundMvp.Presenter arroundPresenter = new AroundPresenter(this);
+
     @ViewInject(R.id.trends_recycler)
     private RecyclerView trends_recycler;
     @ViewInject(R.id.new_trends)
@@ -77,8 +77,13 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
         //给RecyclerView设置适配器
         trends_recycler.setAdapter(trendsAdapter);
 
+        initData();
         initListener();
         return view;
+    }
+
+    private void initData(){
+        arroundPresenter.loadTrends();
     }
 
     private void initListener(){
@@ -130,4 +135,20 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
         }
     }
 
+    @Override
+    public void loadTrendsSuccess(List<TrendsBean> trendsBeans) {
+        this.trendsDatas.clear();
+        for(int i = 0; i<trendsBeans.size(); i++){
+            TrendsBean tmpTrendsBean = trendsBeans.get(i);
+            this.trendsDatas.add(tmpTrendsBean);
+        }
+
+        this.trendsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+    }
 }

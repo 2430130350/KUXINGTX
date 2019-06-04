@@ -3,7 +3,9 @@ package com.xl.kuxingtx.activity.readNote;
 import android.util.Log;
 
 import com.xl.kuxingtx.MyApplication;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
+import com.xl.kuxingtx.fragment.Note.NoteBean;
 import com.xl.kuxingtx.inter.ReadNoteMvp;
 
 import org.xutils.common.util.KeyValue;
@@ -12,6 +14,9 @@ import org.xutils.http.body.MultipartBody;
 import org.xutils.x;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,13 +65,13 @@ public class ReadNoteModel implements ReadNoteMvp.Model {
         x.http().post(params, new org.xutils.common.Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("我来了", "正在上传、");
+                readNotePresenter.uploadTrendsSuccess();
             }
 
             @Override
             public void onFinished() {
                 //上传完成
-                Log.e("我来了", "上传完成、");
+
             }
 
             @Override
@@ -80,5 +85,40 @@ public class ReadNoteModel implements ReadNoteMvp.Model {
 
             }
         });
+    }
+
+    @Override
+    public void saveNote() {
+        ObjectOutputStream fos=null;
+        UserInfo userInfo = UserInfo.getUserInfo();
+        String path = userInfo.getPath();
+        List<NoteBean> noteBeans = userInfo.getNoteBeans();
+
+        try {
+
+            //如果文件不存在就创建文件
+            File file=new File(path);
+            //file.createNewFile();
+            //获取输出流
+            //这里如果文件不存在会创建文件，这是写文件和读文件不同的地方
+            fos = new ObjectOutputStream(new FileOutputStream(file));
+
+            //这里不能再用普通的write的方法了
+            //要使用writeObject
+            fos.writeObject(noteBeans);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                if (fos!=null) {
+                    fos.close();
+                }
+            } catch (IOException e) {
+            }
+
+        }
+
+        readNotePresenter.saveNoteSuccess();
+
     }
 }
