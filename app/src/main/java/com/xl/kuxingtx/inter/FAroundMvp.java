@@ -15,6 +15,6 @@ public interface FAroundMvp {
         public void registerPost(String userName, String password);
         public void resetPasswordPost(String ouserName, String opassword, String nuserName, String npassword);
 
-        public void uploadTrendsPost(TrendsBean trendsBean);
+
     }
 }

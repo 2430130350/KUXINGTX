@@ -95,6 +95,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
                 switch (itemViewId) {
                     case R.id.trends_content:
                         //Toast.makeText(getActivity(), "点击了、", Toast.LENGTH_SHORT).show();
+//                        trendsDatas.get(position).getImgNumber();
                         Intent intent = new Intent();
                         intent.putExtra("trends_content_str", trendsDatas.get(position).getContent());
                         intent.setClass(getActivity(),ReadTrendsActivity.class);

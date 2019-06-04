@@ -1,7 +1,11 @@
 package com.xl.kuxingtx.fragment.Around;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +15,26 @@ public class TrendsBean {
 
     private Date mTime;
     private String content;
+    private List<String> imgUrl = new ArrayList<String>();
+
+    public TrendsBean(){}
+
+    public TrendsBean(String username, long uid, Date mTime, String content){
+        this.username = username;
+        this.uid = uid;
+        this.mTime = mTime;
+        this.content = content;
+    }
+
+    public List<String> getImgUrl() {
+        if(imgUrl.size() == 0)
+            getImgNumber();
+        return imgUrl;
+    }
+
+    public void setImgUrl(List<String> imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public long getUid() {
         return uid;
@@ -83,15 +107,19 @@ public class TrendsBean {
         return partialContent;
     }
 
-    /*public int getImgNumber(){
-        String pattern1 = "<img(.*?)>";
+    public int getImgNumber(){
+        String pattern1 = "(.*?)<img.*?src=\"(.*?)\".*?/>";
         // 创建 Pattern 对象
         Pattern r1 = Pattern.compile(pattern1);
 
         // 现在创建 matcher 对象
         Matcher m1 = r1.matcher(this.content);
-        if (m1.find( )) {
-
+        int number = 0;
+        imgUrl.clear();
+        while (m1.find( )) {
+            number++;
+            imgUrl.add(m1.group(2));
         }
-    }*/
+        return number;
+    }
 }

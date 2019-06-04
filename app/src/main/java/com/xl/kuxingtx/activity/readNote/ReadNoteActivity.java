@@ -221,10 +221,12 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         switch (position){
                             case 0:
-                                takePhoto();
+                                //发表为动态、
+                                readNotePresenter.uploadTrends(content_text);
                                 break;
                             case 1:
-                                choosePhoto();
+                                //保存为随笔、
+
                                 break;
                         }
                         completeDialog.dismiss();

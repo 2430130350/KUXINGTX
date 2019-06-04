@@ -234,7 +234,7 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                                 aMapLocation.getLongitude())));
                         //可在其中解析amapLocation获取相应内容。
 
-                        UserInfo.getUserInfo().setLocation("");
+                        //UserInfo.getUserInfo().setLocation("");
                         mListener.onLocationChanged(aMapLocation);
                         isFirstLoc = false;
 
