@@ -7,6 +7,7 @@ public class UserInfo {
     private int records = 200;
     private int treature = 200;
     private boolean isLogined = false;           //为了测试此处进行了修改
+    private String location = "";
 
 
     private static UserInfo userInfo = new UserInfo();
@@ -53,4 +54,11 @@ public class UserInfo {
         isLogined = logined;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
