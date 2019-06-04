@@ -27,6 +27,7 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.inter.IndexMvp;
 
 import org.xutils.view.annotation.ContentView;
@@ -126,12 +127,14 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
             public void onPoiSearched(PoiResult poiResult, int i) {
                 ArrayList<PoiItem> poiItemArrayList=poiResult.getPois();
                 for(int j=0;j<10;j++){
-                    aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
+                    Marker marker = aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
                             .get(j).getLatLonPoint().getLatitude(),poiItemArrayList
                             .get(j).getLatLonPoint().getLongitude()))
                             .title(poiItemArrayList.get(j).getTitle())
                             .snippet(poiItemArrayList.get(j).getSnippet()));
+                    marker.showInfoWindow();
                 }
+                //aMap.setInfoWindowAdapter(minforWindow);
             }
 
             @Override
@@ -150,7 +153,34 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
         }
     }
 
+    //定义展示板样式
+    public AMap.InfoWindowAdapter minforWindow = new AMap.InfoWindowAdapter() {
+        private View infoWindow = null;
+    @Override
+    public View getInfoWindow(Marker marker) {
+        if(infoWindow == null) {
+            infoWindow = LayoutInflater.from(FragmentIndex.super.getContext()).inflate
+                    (R.layout.fragment_fragment_index,null);
+            TextView textView = infoWindow.findViewById(R.id.infowindow);
+            textView.setText(marker.getId());
+            textView.setText(marker.getTitle());
+        }
+        //render(marker, infoWindow);
+        return infoWindow;
+    }
 
+    /**
+     * 自定义infowinfow窗口
+     */
+    public void render(Marker marker, View view) {
+        //如果想修改自定义Infow中内容，请通过view找到它并修改
+
+        }
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
+    }
+};
     @Override
     public void onClick(View v) {
 /*        switch (v.getId()){
@@ -203,6 +233,8 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                         aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(aMapLocation.getLatitude(),
                                 aMapLocation.getLongitude())));
                         //可在其中解析amapLocation获取相应内容。
+                        
+                        UserInfo.getUserInfo().setLocation("");
                         mListener.onLocationChanged(aMapLocation);
                         isFirstLoc = false;
 
