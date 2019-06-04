@@ -125,10 +125,9 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
         poiSearch.setOnPoiSearchListener(new PoiSearch.OnPoiSearchListener() {
             @Override
             public void onPoiSearched(PoiResult poiResult, int i) {
-                Marker marker;
                 ArrayList<PoiItem> poiItemArrayList=poiResult.getPois();
                 for(int j=0;j<10;j++){
-                    marker  = aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
+                    Marker marker = aMap.addMarker(new MarkerOptions().position(new LatLng(poiItemArrayList
                             .get(j).getLatLonPoint().getLatitude(),poiItemArrayList
                             .get(j).getLatLonPoint().getLongitude()))
                             .title(poiItemArrayList.get(j).getTitle())
@@ -136,7 +135,6 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                     marker.showInfoWindow();
                 }
             }
-
             @Override
             public void onPoiItemSearched(PoiItem poiItem, int i) {
 
@@ -152,6 +150,7 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
             this.getView().setVisibility(menuVisible ? View.VISIBLE : View.GONE);
         }
     }
+
 
     @Override
     public void onClick(View v) {
@@ -206,9 +205,9 @@ public class FragmentIndex extends Fragment implements View.OnClickListener, Ind
                                 aMapLocation.getLongitude())));
                         //可在其中解析amapLocation获取相应内容。
                         isFirstLoc = false;
-                        mListener.onLocationChanged(aMapLocation);
-                        UserInfo.getUserInfo().setLocation(aMapLocation.getAddress());
                     }
+                    UserInfo.getUserInfo().setLocation(aMapLocation.getAddress());
+                    mListener.onLocationChanged(aMapLocation);
                 } else Log.e("AmapError", "location Error, ErrCode:" + aMapLocation.getErrorCode() +
                         ", errInfo:" + aMapLocation.getErrorInfo());
             }
