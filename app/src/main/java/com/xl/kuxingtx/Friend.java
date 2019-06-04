@@ -14,6 +14,7 @@ public class Friend {
         this.uid=uid;
         this.fid=fid;
         this.mconfirm=mconfirm;
+        this.fconfirm=fconfirm;
         this.nick_name=nick_name;
         this.description=description;
     }
