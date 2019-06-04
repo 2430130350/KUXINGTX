@@ -75,6 +75,9 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
     //用于标识本次编辑是什么操作、
     private int code = -1;
 
+    //用于标识当前编辑的Note是哪一篇、
+    private int nowPosition = -1;
+
 
     public static final int RC_CHOOSE_PHOTO = 1;
     public static final int RC_TAKE_PHOTO = 2;
@@ -94,10 +97,12 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
 
         Intent intent = getIntent();
         code = intent.getIntExtra("code", -1);
+
         switch (code){
             case CodeUtils.IS_UPDATE_NOTE:
                 String note_content_str = intent.getStringExtra("note_content_str");
                 this.content_text = note_content_str;
+                nowPosition = intent.getIntExtra("position", -1);
                 break;
             case CodeUtils.IS_NEW_NOTE:
                 break;
@@ -246,7 +251,7 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                                         readNotePresenter.saveNote(content_text);
                                         break;
                                     case CodeUtils.IS_UPDATE_NOTE:
-                                        readNotePresenter.saveNote(content_text, position);
+                                        readNotePresenter.saveNote(content_text, nowPosition);
                                         break;
                                 }
 
@@ -270,6 +275,8 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
         this.finish();
     }
+
+
 
 
     //判断软键盘情况、并隐藏、

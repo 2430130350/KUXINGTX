@@ -90,6 +90,7 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
             NoteBean tmpNoteBean = tmpNoteBeans.get(i);
             this.noteDatas.add(tmpNoteBean);
         }
+        noteAdapter.notifyDataSetChanged();
     }
 
     private void initListener(){
@@ -113,7 +114,8 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                         //标识操作、
                         intent.putExtra("code", CodeUtils.IS_UPDATE_NOTE);
                         //传递内容信息、
-                        intent.putExtra("note_content_str", noteDatas.get(position).getFormatContent());
+                        intent.putExtra("note_content_str", noteDatas.get(position).getContent());
+                        intent.putExtra("position", position);
                         intent.setClass(getActivity(), ReadNoteActivity.class);
                         startActivity(intent);
                         break;
@@ -150,6 +152,6 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     @Override
     public void onResume(){
         super.onResume();
-        noteAdapter.notifyDataSetChanged();
+        initData();
     }
 }
