@@ -4,8 +4,8 @@ public class UserInfo {
     private String userName = "";
     private String password = "";
     private int id = -1;
-    private int records = -1;
-    private int treature = -1;
+    private int records = 200;
+    private int treature = 200;
     private boolean isLogined = false;           //为了测试此处进行了修改
 
 

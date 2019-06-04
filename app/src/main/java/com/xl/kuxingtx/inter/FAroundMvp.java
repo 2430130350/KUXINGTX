@@ -1,6 +1,7 @@
 package com.xl.kuxingtx.inter;
 
 import com.xl.kuxingtx.UserInfo;
+import com.xl.kuxingtx.fragment.Around.TrendsBean;
 
 public interface FAroundMvp {
     public interface View{}
@@ -13,5 +14,7 @@ public interface FAroundMvp {
         public void loginPost(UserInfo userInfo);
         public void registerPost(String userName, String password);
         public void resetPasswordPost(String ouserName, String opassword, String nuserName, String npassword);
+
+        public void uploadTrendsPost(TrendsBean trendsBean);
     }
 }

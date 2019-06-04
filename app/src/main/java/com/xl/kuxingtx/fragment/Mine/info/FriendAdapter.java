@@ -17,6 +17,6 @@ public class FriendAdapter extends BaseQuickAdapter<FriendBean, BaseViewHolder> 
 
     @Override
     protected void convert(BaseViewHolder helper, FriendBean item) {
-        helper.setText(R.id.friend_name, item.getUserName());
+        helper.setText(R.id.friend_name, "" + item.getFid());
     }
 }

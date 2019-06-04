@@ -11,11 +11,12 @@ public class Friend {
     public Friend(){}
 
     public Friend(long uid, long fid, long mconfirm, long fconfirm, String nick_name, String description){
-        this.uid=uid;
-        this.fid=fid;
-        this.mconfirm=mconfirm;
-        this.nick_name=nick_name;
-        this.description=description;
+        this.uid = uid;
+        this.fid = fid;
+        this.mconfirm = mconfirm;
+        this.fconfirm = fconfirm;
+        this.nick_name = nick_name;
+        this.description = description;
     }
 
     public long getUid() {

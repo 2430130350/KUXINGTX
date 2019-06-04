@@ -7,9 +7,18 @@ import java.util.regex.Pattern;
 
 public class TrendsBean {
     private String username;
+    private long uid;
+
     private Date mTime;
     private String content;
 
+    public long getUid() {
+        return uid;
+    }
+
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
     public String getUsername() {
         return username;
     }
@@ -73,4 +82,16 @@ public class TrendsBean {
         }
         return partialContent;
     }
+
+    /*public int getImgNumber(){
+        String pattern1 = "<img(.*?)>";
+        // 创建 Pattern 对象
+        Pattern r1 = Pattern.compile(pattern1);
+
+        // 现在创建 matcher 对象
+        Matcher m1 = r1.matcher(this.content);
+        if (m1.find( )) {
+
+        }
+    }*/
 }

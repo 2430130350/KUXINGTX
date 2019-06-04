@@ -73,12 +73,12 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
         tv_marquee.startSimpleRoll(tvDatas);
 
 
-        FriendBean friendBean;
+/*        FriendBean friendBean;
         for (int i = 0; i < 15; i++) {
             friendBean = new FriendBean();
             friendBean.setUserName("测试、");
             friendDatas.add(friendBean);
-        }
+        }*/
         //创建布局管理
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -89,16 +89,21 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
         //给RecyclerView设置适配器
         friend_recycler.setAdapter(friendAdapter);
+        initData();
         initListener();
 
         return view;
     }
 
-   private void initListener(){
-        mine_username.setOnClickListener(this);
-        new_friend_btn.setOnClickListener(this);
-        friend_apply_btn.setOnClickListener(this);
-    }
+   private void initListener() {
+       mine_username.setOnClickListener(this);
+       new_friend_btn.setOnClickListener(this);
+       friend_apply_btn.setOnClickListener(this);
+   }
+
+   private void initData(){
+        infoPresenter.relation_my_all_qur(UserInfo.getUserInfo().getId());
+   }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
@@ -196,9 +201,30 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
 
     }
 
+    private void updateData(){
+        FriendInfo.getFriendInfo().sortFriends();
+        //下面是获得好友数据并填充到界面adapter中、
+        List<Friend> tmpFriends = FriendInfo.getFriendInfo().getAlreadyFriends();
+        this.friendDatas.clear();
+        for(int i = 0; i<tmpFriends.size(); i++){
+            Friend tmpFriend = tmpFriends.get(i);
+            FriendBean tmpFriendBean = new FriendBean(
+                    tmpFriend.getUid(),
+                    tmpFriend.getFid(),
+                    tmpFriend.getMconfirm(),
+                    tmpFriend.getFconfirm(),
+                    tmpFriend.getNick_name(),
+                    tmpFriend.getDescription()
+            );
+
+            this.friendDatas.add(tmpFriendBean);
+        }
+        this.friendAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void relation_my_all_qurSuccess() {
-
+        this.updateData();
     }
 
     @Override

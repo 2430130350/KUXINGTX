@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.xl.kuxingtx.R;
+import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.inter.MyInfoMvp;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
@@ -36,13 +37,13 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 //        setContentView(R.layout.activity_my_info);
         x.view().inject(this);
 
-        InfoBean infoBean;
+/*        InfoBean infoBean;
         for (int i = 0; i < 15; i++) {
             infoBean = new InfoBean();
             infoBean.setKey("昵称");
             infoBean.setValue("汐离");
             infoDatas.add(infoBean);
-        }
+        }*/
 
 
         //创建布局管理
@@ -55,6 +56,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
 
         //给RecyclerView设置适配器
         info_recycler.setAdapter(infoAdapter);
+        initData();
         initListener();
     }
 
@@ -65,6 +67,28 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 MyInfoActivity.this.finish();
             }
         });
+    }
+
+    private void initData(){
+        infoDatas.clear();
+        InfoBean infoBean = new InfoBean("默认", "默认");
+        for(int i = 0; i<4; i++){
+            switch (i){
+                case 0:
+                    infoBean = new InfoBean("UID", "" + UserInfo.getUserInfo().getId());
+                    break;
+                case 1:
+                    infoBean = new InfoBean("用户名", "" + UserInfo.getUserInfo().getUserName());
+                    break;
+                case 2:
+                    infoBean = new InfoBean("积分", "" + UserInfo.getUserInfo().getRecords());
+                    break;
+                case 3:
+                    infoBean = new InfoBean("财富", "" + UserInfo.getUserInfo().getTreasure());
+                    break;
+            }
+            infoDatas.add(infoBean);
+        }
     }
 
     @Override
