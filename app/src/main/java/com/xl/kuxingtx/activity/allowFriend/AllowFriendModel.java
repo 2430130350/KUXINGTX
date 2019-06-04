@@ -122,7 +122,7 @@ public class AllowFriendModel implements AllowFriendMvp.Model {
                 try {
                     JSONObject jsonResult = new JSONObject(result);
                     if(jsonResult.optBoolean("isRelation_my_all_qurSuccess")){
-                        ArrayList<Friend> Friends =new ArrayList<Friend>();
+                        ArrayList<Friend> friends =new ArrayList<Friend>();
                         FriendInfo friendInfo = FriendInfo.getFriendInfo();
 
                         JSONObject object=new JSONObject(result);
@@ -136,10 +136,10 @@ public class AllowFriendModel implements AllowFriendMvp.Model {
                             String nick_name=objects.optString("nick_name");
                             String description=objects.optString("description");
                             Friend tmpfriend=new Friend(uid,fid,mconfirm,fconfirm,nick_name,description);
-                            Friends.add(tmpfriend);
+                            friends.add(tmpfriend);
                         }
 
-                        friendInfo.setFriends(Friends);
+                        friendInfo.setFriends(friends);
                         /**
                          * 用户查询所有好友成功、
                          * */
