@@ -78,7 +78,7 @@ public class AllowFriendActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void relation_my_one_qurSuccess(ArrayList<Friend> Friends) {
+    public void relation_my_one_qurSuccess( ArrayList<Friend> Friends) {
 
     }
 }
