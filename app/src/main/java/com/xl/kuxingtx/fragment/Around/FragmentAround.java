@@ -54,7 +54,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
         //必须先调用RichText.initCacheDir()方法、不然报错、
         RichText.initCacheDir(this.getActivity());
 
-        TrendsBean trendsBean;
+/*        TrendsBean trendsBean;
         for (int i = 0; i < 15; i++) {
             trendsBean = new TrendsBean();
             trendsBean.setContent(
@@ -65,7 +65,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
                             "\n" +
                             "　　更重要的是，美国政府正动用国家力量对华为开展致力于让其关门的全面打压，而四件包裹错投的终极地都是美国，这加重了人们对联邦快递这样做是受到美国政府操纵的怀疑。");
             trendsDatas.add(trendsBean);
-        }
+        }*/
         //创建布局管理
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -138,7 +138,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
     @Override
     public void loadTrendsSuccess(List<TrendsBean> trendsBeans) {
         this.trendsDatas.clear();
-        for(int i = 0; i<trendsBeans.size(); i++){
+        for(int i = 0; i < trendsBeans.size(); i++){
             TrendsBean tmpTrendsBean = trendsBeans.get(i);
             this.trendsDatas.add(tmpTrendsBean);
         }
@@ -148,7 +148,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
 
     @Override
     public void onResume() {
-
         super.onResume();
+        initData();
     }
 }

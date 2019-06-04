@@ -109,7 +109,7 @@ public class TrendsBean implements Serializable {
     }
 
     public int getImgNumber(){
-        String pattern1 = "(.*?)<img.*?src=\"(.*?)\".*?/>";
+        String pattern1 = "(.*?)<img.*?src=\"(.*?)\".*?>";
         // 创建 Pattern 对象
         Pattern r1 = Pattern.compile(pattern1);
 

@@ -16,7 +16,11 @@ import org.xutils.http.body.MultipartBody;
 import org.xutils.x;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AroundModel implements FAroundMvp.Model {
@@ -55,18 +59,22 @@ public class AroundModel implements FAroundMvp.Model {
                 //解析result
                 try {
                     JSONObject jsonResult = new JSONObject(result);
-                    if(jsonResult.optBoolean("isLoginSuccess")){
+                    if(jsonResult.optBoolean("isTrends_my_all_querSuccess")){
                         /**
-                         * 登录成功、
+                         * 获取数据成功、
                          * */
-                        JSONArray array=jsonResult.optJSONArray("jsonContent");
+                        JSONArray array = jsonResult.optJSONArray("resultContent");
                         for(int i=0;i<array.length();i++){
-                            JSONObject objects=array.optJSONObject(i);
-                            long id = jsonResult.optLong("uid");
-                            String content = jsonResult.optString("content");
+                            JSONObject objects = array.optJSONObject(i);
+                            long id = objects.optLong("uid");
+                            String content = objects.optString("article");
+                            String mTime = objects.optString("date");
+                            mTime = mTime.replace("T", " ");
+                            Date dTime = stringToDate1(mTime);
 
                             TrendsBean trendsBean = new TrendsBean();
                             trendsBean.setUid(id);
+                            trendsBean.setmTime(dTime);
                             trendsBean.setContent(content);
                             trendsBeans.add(trendsBean);
                         }
@@ -76,6 +84,7 @@ public class AroundModel implements FAroundMvp.Model {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    arroundPresenter.loadTrendsSuccess(trendsBeans);
                 }
 
             }
@@ -89,5 +98,17 @@ public class AroundModel implements FAroundMvp.Model {
             public void onFinished() {
             }
         });
+    }
+
+    public static Date stringToDate1(String mTime){
+        DateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date= null;
+        try {
+            date = format.parse(mTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.print(date);
+        return date;
     }
 }

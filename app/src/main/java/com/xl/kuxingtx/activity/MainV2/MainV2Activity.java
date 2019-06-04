@@ -34,6 +34,8 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 
+import per.goweii.anylayer.AnyLayer;
+
 @ContentView(R.layout.activity_main_v2)
 public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     @ViewInject(R.id.bottom_bar)
@@ -90,6 +92,11 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
         bottom_bar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if((checkedId == R.id.radio1 || checkedId == R.id.radio2) && !UserInfo.getUserInfo().isLogined()){
+                    MainV2Activity.this.needLogin();
+                    return;
+                }
+
                 int index=0;
                 indexBtn.setTextColor(Color.rgb(162, 162, 162));
                 noteBtn.setTextColor(Color.rgb(162, 162, 162));
@@ -191,4 +198,15 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
 
         super.onResume();
     }
+
+    private void needLogin(){
+        AnyLayer.with(this)
+                .contentView(R.layout.needlogin_dialog)
+                .backgroundBlurPercent(0.05f)
+                .backgroundColorInt(getResources().getColor(R.color.dialog_blur_bg))
+                .onClickToDismiss(R.id.fl_dialog_yes, R.id.fl_dialog_no)
+                .show();
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.xl.kuxingtx.activity.readNote;
 import android.Manifest;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -204,6 +206,7 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         List<String> stringList = new ArrayList<String>();
         switch (v.getId()){
             case R.id.add_img:
+                hideKeyboard(ReadNoteActivity.this);
                 stringList.add("拍照");
                 stringList.add("从相册选择");
                 final OptionBottomDialog addImgDialog = new OptionBottomDialog(ReadNoteActivity.this, stringList);
@@ -223,6 +226,7 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                 });
                 break;
             case R.id.complete:
+                hideKeyboard(ReadNoteActivity.this);
                 stringList.add("发表为动态");
                 stringList.add("保存为随笔");
                 final OptionBottomDialog completeDialog = new OptionBottomDialog(ReadNoteActivity.this, stringList);
@@ -265,5 +269,16 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
     public void saveNoteSuccess() {
         Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
         this.finish();
+    }
+
+
+    //判断软键盘情况、并隐藏、
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            if (activity.getCurrentFocus().getWindowToken() != null) {
+                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }

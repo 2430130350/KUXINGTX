@@ -7,7 +7,7 @@ import com.xuexiang.xui.XUI;
 
 //初始化
 public class MyApplication extends Application {
-    public static String httpHead="http://"+"192.168.43.99:8000/";
+    public static String httpHead="http://"+"192.168.1.199:8000/";
     public static String webUri_login = httpHead + "login/";
     public static String webUri_register = httpHead + "register/";
     public static String webUri_resetPassword = httpHead + "resetPassword/";
