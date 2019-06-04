@@ -61,4 +61,24 @@ public class AllowFriendActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
 
     }
+
+    @Override
+    public void relation_confirmSuccess() {
+
+    }
+
+    @Override
+    public void relation_delSuccess() {
+
+    }
+
+    @Override
+    public void relation_my_all_qurSuccess() {
+
+    }
+
+    @Override
+    public void relation_my_one_qurSuccess(ArrayList<Friend> Friends) {
+
+    }
 }
