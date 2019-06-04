@@ -87,7 +87,7 @@ public class TrendsBean implements Serializable {
     }
 
     public String getPartialContent(){
-        String pattern1 = "(.*?)(<img.*?/>)";
+        String pattern1 = "(.*?)(<img.*?>)";
         String partialContent = "";
         // 创建 Pattern 对象
         Pattern r1 = Pattern.compile(pattern1);
