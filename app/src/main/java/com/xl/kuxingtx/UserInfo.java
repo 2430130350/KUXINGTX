@@ -2,13 +2,18 @@ package com.xl.kuxingtx;
 
 import android.os.Environment;
 
+import com.xl.kuxingtx.fragment.Around.TrendsBean;
 import com.xl.kuxingtx.fragment.Note.NoteBean;
+import com.xuexiang.xvideo.XVideo;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class UserInfo {
@@ -20,6 +25,15 @@ public class UserInfo {
     private boolean isLogined = false;
     private List<NoteBean> noteBeans = new ArrayList<NoteBean>();
     private String location = "";
+
+    /**
+     * 初始化xvideo的存放路径
+     */
+    public  void initVideo() {
+        XVideo.setVideoCachePath(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ id +"KXTXvideo/");
+        // 初始化拍摄
+        XVideo.initialize(false, null);
+    }
 
     public String getLocation() {
         return location;
@@ -33,6 +47,7 @@ public class UserInfo {
         //如果还没加载本地随笔数据、先调用loadNoteBeans()进行加载、
         if(this.noteBeans.size() == 0)
             loadNoteBeans();
+        sortNote(noteBeans);
         return noteBeans;
     }
 
@@ -123,6 +138,26 @@ public class UserInfo {
 
     public void setLogined(boolean logined) {
         isLogined = logined;
+    }
+
+    private void sortNote(List<NoteBean> noteBeans){
+
+        Collections.sort(noteBeans, new Comparator<NoteBean>(){
+            @Override
+            public int compare(NoteBean arg0, NoteBean arg1) {
+                int mark = 1;
+                Date date0 = arg0.getmTime();
+                Date date1 = arg1.getmTime();
+                if(date0.getTime() > date1.getTime()){
+                    mark =  -1;
+                }
+                if(arg0.getmTime() == arg1.getmTime()){
+                    mark =  0;
+                }
+                return mark;
+            } //compare
+        });
+
     }
 
 }

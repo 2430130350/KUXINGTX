@@ -31,7 +31,8 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".activity.MainV2.MainV2Activity" />
+        <activity android:name=".activity.MainV2.MainV2Activity"
+            android:launchMode="singleTask"/>
         <activity android:name=".activity.readTrends.ReadTrendsActivity" />
         <activity android:name=".activity.myInfo.MyInfoActivity" />
         <activity

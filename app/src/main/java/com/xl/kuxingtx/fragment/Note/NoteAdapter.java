@@ -13,6 +13,8 @@ public class NoteAdapter extends BaseQuickAdapter<NoteBean, BaseViewHolder> {
     public NoteAdapter(int layoutResId, List data){
         super(layoutResId, data);
     }
+
+
     @Override
     protected void convert(BaseViewHolder helper, NoteBean item) {
         helper.setText(R.id.time, item.getDateString("yyyy.MM.dd"));

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -95,6 +96,8 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
             NoteBean tmpNoteBean = tmpNoteBeans.get(i);
             this.noteDatas.add(tmpNoteBean);
         }
+        refreshLayout.finishRefresh(500);
+        Toast.makeText(getActivity(), "刷新成功、", Toast.LENGTH_SHORT).show();
         noteAdapter.notifyDataSetChanged();
     }
 
@@ -131,7 +134,6 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
-                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -119,7 +120,7 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 initData();
-                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -161,7 +162,8 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
             TrendsBean tmpTrendsBean = trendsBeans.get(i);
             this.trendsDatas.add(tmpTrendsBean);
         }
-
+        this.refreshLayout.finishRefresh(500);
+        Toast.makeText(getActivity(), "刷新成功、", Toast.LENGTH_SHORT).show();
         this.trendsAdapter.notifyDataSetChanged();
     }
 

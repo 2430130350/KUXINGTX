@@ -11,6 +11,7 @@ import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.inter.MyInfoMvp;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
+import com.xuexiang.xui.widget.button.ButtonView;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
@@ -27,6 +28,9 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
     @ViewInject(R.id.titleBar)
     private TitleBar titleBar;
     private InfoAdapter infoAdapter;
+    @ViewInject(R.id.sign_out_btn)
+    private ButtonView sign_out_btn;
+
     private List<InfoBean> infoDatas = new ArrayList<InfoBean>();
 
     @Override
@@ -67,6 +71,13 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
                 MyInfoActivity.this.finish();
             }
         });
+        sign_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserInfo.getUserInfo().setLogined(false);
+                MyInfoActivity.this.finish();
+            }
+        });
     }
 
     private void initData(){
@@ -89,6 +100,7 @@ public class MyInfoActivity extends AppCompatActivity implements View.OnClickLis
             }
             infoDatas.add(infoBean);
         }
+        infoAdapter.notifyDataSetChanged();
     }
 
     @Override

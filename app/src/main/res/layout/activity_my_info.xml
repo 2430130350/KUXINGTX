@@ -63,12 +63,13 @@
         app:riv_selected_mask_color="@color/xui_config_color_gray_8" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartRefreshLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sign_out_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radiusImageView">
@@ -76,10 +77,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:gravity="center"
             android:background="#fff"
-            android:textColor="#fff"
-            android:text=""/>
+            android:gravity="center"
+            android:text=""
+            android:textColor="#fff" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/trends_recycler"
@@ -88,5 +89,21 @@
             android:background="#fff"
             android:overScrollMode="never" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <com.xuexiang.xui.widget.button.ButtonView
+        android:id="@+id/sign_out_btn"
+        style="@style/ButtonView.Gray"
+        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="注销账号"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.7"/>
 
 </android.support.constraint.ConstraintLayout>

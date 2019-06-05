@@ -95,7 +95,7 @@ public class NoteBean implements Serializable {
         } else {
             //全是字、
             if(this.content.length() > 50){
-                partialContent = this.content.substring(0, 50);
+                partialContent = this.content.substring(0, 50) + "\n\n ...";
             }
             else {
                 partialContent = this.content;

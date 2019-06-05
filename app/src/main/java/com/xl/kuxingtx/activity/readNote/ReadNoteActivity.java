@@ -36,6 +36,8 @@ import com.xl.kuxingtx.utils.CodeUtils;
 
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
+import com.xuexiang.xvideo.XVideo;
+import com.xuexiang.xvideo.model.MediaRecorderConfig;
 import com.zzhoujay.richtext.RichText;
 
 import org.xutils.view.annotation.ContentView;
@@ -77,6 +79,9 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
 
     //用于标识当前编辑的Note是哪一篇、
     private int nowPosition = -1;
+
+    //用于防止没有界面没有获得焦点、点击添加图片时、隐藏软键盘报错、
+    private boolean isHavePoint = false;
 
 
     public static final int RC_CHOOSE_PHOTO = 1;
@@ -131,6 +136,7 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
             public void onTextChange(String text) {
                 // Do Something
                 content_text = text;
+                isHavePoint = true;
             }
         });
         titleBar.setLeftClickListener(new View.OnClickListener() {
@@ -200,8 +206,8 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
         // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 100);
-        intent.putExtra("outputY", 100);
+        intent.putExtra("outputX", 500);
+        intent.putExtra("outputY", 500);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, RC_PHOTORESOULT);
     }
@@ -211,6 +217,8 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         List<String> stringList = new ArrayList<String>();
         switch (v.getId()){
             case R.id.add_img:
+
+                //正确
                 hideKeyboard(ReadNoteActivity.this);
                 stringList.add("拍照");
                 stringList.add("从相册选择");
@@ -242,6 +250,7 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
                             case 0:
                                 //发表为动态、
                                 readNotePresenter.uploadTrends(content_text);
+                                Toast.makeText(ReadNoteActivity.this, "上传中、请耐心等待、", Toast.LENGTH_SHORT);
                                 break;
                             case 1:
                                 //保存为随笔、
@@ -276,11 +285,24 @@ public class ReadNoteActivity extends AppCompatActivity implements View.OnClickL
         this.finish();
     }
 
-
+    /**
+     * 开始录制视频
+     * @param requestCode 请求码
+     */
+    //@Permission({PermissionConsts.CAMERA, PermissionConsts.STORAGE})
+    public void startVideoRecorder(int requestCode) {
+        MediaRecorderConfig mediaRecorderConfig = MediaRecorderConfig.newInstance();
+        XVideo.startVideoRecorder(this, mediaRecorderConfig, requestCode);
+    }
 
 
     //判断软键盘情况、并隐藏、
-    public static void hideKeyboard(Activity activity) {
+    public void hideKeyboard(Activity activity) {
+        //防止没有焦点、出现异常、
+        if(!isHavePoint){
+            return;
+        }
+        //隐藏软键盘逻辑、
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
             if (activity.getCurrentFocus().getWindowToken() != null) {

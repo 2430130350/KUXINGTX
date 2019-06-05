@@ -58,6 +58,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private LabelButtonView new_friend_btn;
     @ViewInject(R.id.friend_apply_btn)
     private LabelButtonView friend_apply_btn;
+
 /*    @ViewInject(R.id.refreshLayout)
     private RefreshLayout refreshLayout;*/
 
@@ -109,6 +110,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
    }
 
    private void initData(){
+        mine_username.setText(UserInfo.getUserInfo().getUserName());
         infoPresenter.relation_my_all_qur(UserInfo.getUserInfo().getId());
    }
 

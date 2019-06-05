@@ -134,6 +134,9 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         Toast.makeText(getActivity(), "登录成功、", Toast.LENGTH_SHORT).show();
         MainV2Activity mainV2Activity = (MainV2Activity)getActivity();
         mainV2Activity.mHandler.sendEmptyMessage(CodeUtils.IS_LOGIN);
+        input_username.setText("");
+        input_password.setText("");
+        reinput_password.setText("");
 
     }
 

@@ -20,6 +20,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class AroundModel implements FAroundMvp.Model {
                             trendsBeans.add(trendsBean);
                         }
 
-
+                        sortTrends(trendsBeans);
                         arroundPresenter.loadTrendsSuccess(trendsBeans);
                     }
                 } catch (JSONException e) {
@@ -111,4 +113,25 @@ public class AroundModel implements FAroundMvp.Model {
         System.out.print(date);
         return date;
     }
+
+    private void sortTrends(List<TrendsBean> trendsBeans){
+
+        Collections.sort(trendsBeans, new Comparator<TrendsBean>(){
+            @Override
+            public int compare(TrendsBean arg0, TrendsBean arg1) {
+                int mark = 1;
+                Date date0 = arg0.getmTime();
+                Date date1 = arg1.getmTime();
+                if(date0.getTime() > date1.getTime()){
+                    mark =  -1;
+                }
+                if(arg0.getmTime() == arg1.getmTime()){
+                    mark =  0;
+                }
+                return mark;
+            } //compare
+        });
+
+    }
+
 }

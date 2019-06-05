@@ -55,21 +55,31 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     private MainV2Mvp.Presenter mainPresenter = new MainV2Presenter(this);
     private boolean isExit = false;
 
+    private int nowPosition = 0;
+
 
     @SuppressLint("HandlerLeak")
     public Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
+            Fragment fragment;
             switch (msg.what) {
                 case 403:
                     MainV2Activity.this.isExit = false;
                     break;
                 case CodeUtils.IS_LOGIN:
-                    Fragment fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,4);
+                    fragment = (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,4);
                     fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
                     fragmentStatePagerAdapter.finishUpdate(layout_content);
                     fragmentStatePagerAdapter.notifyDataSetChanged();
                     break;
+                case CodeUtils.NEED_LOGIN:
+                    fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,3);
+                    fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
+                    fragmentStatePagerAdapter.finishUpdate(layout_content);
+                    fragmentStatePagerAdapter.notifyDataSetChanged();
+                    break;
+
             }
             super.handleMessage(msg);
         }
@@ -128,6 +138,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
                 Fragment fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,index);
                 fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
                 fragmentStatePagerAdapter.finishUpdate(layout_content);
+                nowPosition = index;
             }
         });
         fragmentStatePagerAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
@@ -184,7 +195,7 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
     public void onBackPressed() {
 
         if(this.isExit)
-            super.onBackPressed();
+            this.finish();
         else{
             isExit = true;
             Toast.makeText(this, "再按一次返回键将退出程序、", Toast.LENGTH_SHORT).show();
@@ -195,11 +206,15 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
 
     @Override
     public void onResume() {
-
         super.onResume();
+        //如果返回到主界面时、处于登录页面（登录时未修改position所以为3）、处于个人信息页面、且状态为未登录、那么需要替换当前页面为登录页面、
+        if(!UserInfo.getUserInfo().isLogined() && (nowPosition == 4 || nowPosition == 3)){
+            this.mHandler.sendEmptyMessage(CodeUtils.NEED_LOGIN);
+        }
     }
 
     private void needLogin(){
+        //检测到需要先登录的操作、进行弹窗提示、..
         AnyLayer.with(this)
                 .contentView(R.layout.needlogin_dialog)
                 .backgroundBlurPercent(0.05f)

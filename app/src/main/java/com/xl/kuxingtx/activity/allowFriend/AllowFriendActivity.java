@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.R;
@@ -37,6 +40,9 @@ public class AllowFriendActivity extends AppCompatActivity implements View.OnCli
     private RecyclerView allow_recycler;
     @ViewInject(R.id.titleBar)
     private TitleBar titleBar;
+
+    @ViewInject(R.id.refreshLayout)
+    private RefreshLayout refreshLayout;
 
     private AllowFriendAdapter allowFriendAdapter;
     private List<Friend> friends = new ArrayList<Friend>();
@@ -106,6 +112,20 @@ public class AllowFriendActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
+
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                initData();
+
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
+            }
+        });
     }
 
     @Override
@@ -128,6 +148,8 @@ public class AllowFriendActivity extends AppCompatActivity implements View.OnCli
         for(int i = 0; i<tmpFriends.size(); i++){
             this.friends.add(tmpFriends.get(i));
         }
+        refreshLayout.finishRefresh(500);
+        Toast.makeText(this, "刷新成功、", Toast.LENGTH_SHORT).show();
         this.allowFriendAdapter.notifyDataSetChanged();
     }
 

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -123,4 +124,5 @@ public class TrendsBean implements Serializable {
         }
         return number;
     }
+
 }

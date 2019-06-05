@@ -19,6 +19,9 @@ public class TrendsAdapter extends BaseQuickAdapter<TrendsBean, BaseViewHolder> 
         TextView trends_content = (TextView) helper.getView(R.id.trends_content);
         RichText.from(item.getPartialContent()).singleLoad(false).into(trends_content);
 
+        helper.setText(R.id.username, "UID：" + item.getUid());
+        helper.setText(R.id.time, item.getDateString());
+
         helper.addOnClickListener(R.id.trends_content);
     }
 }
