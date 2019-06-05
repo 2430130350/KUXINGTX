@@ -46,7 +46,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/pic1"
+        android:src="@drawable/man"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleBar"

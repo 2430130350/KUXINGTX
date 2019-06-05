@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pic3"
+    android:background="@drawable/bg2"
     tools:context=".fragment.Mine.mine.FragmentMine">
 
     <!-- TODO: Update blank fragment layout -->
@@ -41,7 +41,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:clickable="true"
-        android:src="@drawable/pic1"
+        android:src="@drawable/man"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
