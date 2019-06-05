@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lidroid.xutils.ViewUtils;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xl.kuxingtx.Friend;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
@@ -44,6 +47,8 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     private RadiusImageView write_img;
     @ViewInject(R.id.write)
     private TextView write;
+    @ViewInject(R.id.refreshLayout)
+    private RefreshLayout refreshLayout;
 
     private NoteAdapter noteAdapter;
     private List<NoteBean> noteDatas = new ArrayList<NoteBean>();
@@ -120,6 +125,19 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                         startActivity(intent);
                         break;
                 }
+            }
+        });
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                initData();
+                refreshlayout.finishRefresh(2000/*,false*/);//传入false表示刷新失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(2000/*,false*/);//传入false表示加载失败
             }
         });
     }

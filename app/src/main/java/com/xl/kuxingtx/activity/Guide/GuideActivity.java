@@ -18,6 +18,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 
+
 public class GuideActivity extends AppCompatActivity {
     private ArrayList<View> mViewList;
     @ViewInject(R.id.in_viewpager)
@@ -53,17 +54,44 @@ public class GuideActivity extends AppCompatActivity {
         mViewList.add(view3);
 
         mViewPager.setAdapter(new ViewPagerAdatper(mViewList));
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
-        view3.findViewById(R.id.goto_main).setOnClickListener(new View.OnClickListener() {
+            private boolean isPress = false;
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+                if(i == 2 && isPress){
+                    Intent intent=new Intent(GuideActivity.this, MainV2Activity.class);
+                    startActivity(intent);
+                    GuideActivity.this.finish();
+                }
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    isPress = true;
+                } else {//必须写else，不然的话，倒数第二页就开始自动跳转了
+                    isPress = false;
+                }
+            }
+        });
+
+/*        view3.findViewById(R.id.goto_main).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(GuideActivity.this, MainV2Activity.class);
                 startActivity(intent);
                 GuideActivity.this.finish();
             }
-        });
+        });*/
 
-        skip();
+//        skip();
     }
 
     @Override

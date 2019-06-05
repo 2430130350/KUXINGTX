@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
@@ -55,6 +58,9 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     private LabelButtonView new_friend_btn;
     @ViewInject(R.id.friend_apply_btn)
     private LabelButtonView friend_apply_btn;
+/*    @ViewInject(R.id.refreshLayout)
+    private RefreshLayout refreshLayout;*/
+
     private FriendAdapter friendAdapter;
     private List<FriendBean> friendDatas = new ArrayList<>();
     private List<String> tvDatas = new ArrayList<String>();
@@ -99,6 +105,7 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
        mine_username.setOnClickListener(this);
        new_friend_btn.setOnClickListener(this);
        friend_apply_btn.setOnClickListener(this);
+
    }
 
    private void initData(){
@@ -230,6 +237,12 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     @Override
     public void relation_my_one_qurSuccess(ArrayList<Friend> Friends) {
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        initData();
     }
 
 }
