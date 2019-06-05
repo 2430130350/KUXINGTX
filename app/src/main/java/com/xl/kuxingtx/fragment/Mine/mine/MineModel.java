@@ -61,9 +61,11 @@ public class MineModel implements FMineMvp.Model {
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                minePresenter.loginFailed();
             }
             @Override
             public void onCancelled(CancelledException cex) {
+                minePresenter.loginFailed();
             }
             @Override
             public void onFinished() {
@@ -111,9 +113,11 @@ public class MineModel implements FMineMvp.Model {
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                minePresenter.registerFailed();
             }
             @Override
             public void onCancelled(CancelledException cex) {
+                minePresenter.registerFailed();
             }
             @Override
             public void onFinished() {

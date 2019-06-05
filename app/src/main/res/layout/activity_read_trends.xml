@@ -63,8 +63,10 @@
         app:layout_constraintStart_toEndOf="@+id/userImg" />
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userImg">
@@ -74,10 +76,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:lineSpacingExtra="4dp"
-            android:textIsSelectable="true" />
+            android:textIsSelectable="true"
+            android:layout_marginBottom="200dp"/>
     </android.support.v4.widget.NestedScrollView>
 
 </android.support.constraint.ConstraintLayout>

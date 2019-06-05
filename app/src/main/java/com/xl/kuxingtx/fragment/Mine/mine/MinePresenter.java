@@ -22,6 +22,11 @@ public class MinePresenter implements FMineMvp.Presenter {
         mineView.loginSucess();
     }
 
+    @Override
+    public void loginFailed() {
+        mineView.loginFailed();
+    }
+
     public void register(String userName, String password){
         this.mineModel.registerPost(userName,password);
     }
@@ -29,6 +34,11 @@ public class MinePresenter implements FMineMvp.Presenter {
     @Override
     public void registerSuccess() {
         mineView.registerSuccess();
+    }
+
+    @Override
+    public void registerFailed() {
+        mineView.registerFailed();
     }
 
     public void resetPassword(String ouserName, String opassword, String nuserName, String npassword){

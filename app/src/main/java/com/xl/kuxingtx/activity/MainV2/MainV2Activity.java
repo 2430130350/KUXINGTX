@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
+import com.xl.kuxingtx.FriendInfo;
 import com.xl.kuxingtx.R;
 import com.xl.kuxingtx.UserInfo;
 import com.xl.kuxingtx.fragment.Around.FragmentAround;
@@ -60,18 +61,26 @@ public class MainV2Activity extends AppCompatActivity implements MainV2Mvp.View{
 
     @SuppressLint("HandlerLeak")
     public Handler mHandler = new Handler(){
+        //
+        private boolean isReLogin = false;
         @Override
         public void handleMessage(Message msg) {
             Fragment fragment;
+
             switch (msg.what) {
                 case 403:
                     MainV2Activity.this.isExit = false;
                     break;
                 case CodeUtils.IS_LOGIN:
                     fragment = (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,4);
+                    if(isReLogin){
+                        //重新登录需要刷新个人信息界面、
+                        ((FragmentInfo)fragment).onUpdateReSignIn();
+                    }
                     fragmentStatePagerAdapter.setPrimaryItem(layout_content,0,fragment);
                     fragmentStatePagerAdapter.finishUpdate(layout_content);
                     fragmentStatePagerAdapter.notifyDataSetChanged();
+                    isReLogin = true;
                     break;
                 case CodeUtils.NEED_LOGIN:
                     fragment= (Fragment) fragmentStatePagerAdapter.instantiateItem(layout_content,3);

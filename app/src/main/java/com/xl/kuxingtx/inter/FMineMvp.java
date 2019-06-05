@@ -6,8 +6,10 @@ public interface FMineMvp {
     public interface View{
         //登录功能
         public void loginSucess();
+        public void loginFailed();
         //注册功能
         public void registerSuccess();
+        public void registerFailed();
         //重置密码功能
         public void resetPasswordSuccess();
     }
@@ -15,9 +17,11 @@ public interface FMineMvp {
         //登录功能
         public void login(String userName, String password);
         public void loginSucess();
+        public void loginFailed();
         //注册功能
         public void register(String userName, String password);
         public void registerSuccess();
+        public void registerFailed();
         //重置密码功能
         public void resetPassword(String ouserName,String opassword,String nuserName,String npassword);
         public void resetPasswordSuccess();

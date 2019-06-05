@@ -23,5 +23,6 @@ public class TrendsAdapter extends BaseQuickAdapter<TrendsBean, BaseViewHolder> 
         helper.setText(R.id.time, item.getDateString());
 
         helper.addOnClickListener(R.id.trends_content);
+        helper.addOnLongClickListener(R.id.trends_content);
     }
 }

@@ -102,6 +102,64 @@ public class AroundModel implements FAroundMvp.Model {
         });
     }
 
+    @Override
+    public void delTrendsPost(long uid, String date) {
+        RequestParams params = new RequestParams(MyApplication.webUri_del_trends_post);
+        params.addBodyParameter("uid", "" + uid);
+        params.addBodyParameter("date", date);
+        params.addHeader("head","android"); //为当前请求添加一个头
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            //private List<TrendsBean> trendsBeans = new ArrayList<TrendsBean>();
+
+            @Override
+            public void onSuccess(String result) {
+                //解析result
+                try {
+                    JSONObject jsonResult = new JSONObject(result);
+                    if(jsonResult.optBoolean("isTrends_my_one_delSuccess")){
+                        /**
+                         * 获取数据成功、
+                         * */
+/*                        JSONArray array = jsonResult.optJSONArray("resultContent");
+                        for(int i=0;i<array.length();i++){
+                            JSONObject objects = array.optJSONObject(i);
+                            long id = objects.optLong("uid");
+                            String content = objects.optString("article");
+                            String mTime = objects.optString("date");
+                            mTime = mTime.replace("T", " ");
+                            Date dTime = stringToDate1(mTime);
+
+                            TrendsBean trendsBean = new TrendsBean();
+                            trendsBean.setUid(id);
+                            trendsBean.setmTime(dTime);
+                            trendsBean.setContent(content);
+                            trendsBeans.add(trendsBean);
+                        }
+
+                        sortTrends(trendsBeans);
+                        arroundPresenter.loadTrendsSuccess(trendsBeans);*/
+
+                        arroundPresenter.delTrendsSuccess();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    //arroundPresenter.loadTrendsSuccess(trendsBeans);
+                }
+
+            }
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+            }
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
     public static Date stringToDate1(String mTime){
         DateFormat format= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date= null;
@@ -113,6 +171,8 @@ public class AroundModel implements FAroundMvp.Model {
         System.out.print(date);
         return date;
     }
+
+
 
     private void sortTrends(List<TrendsBean> trendsBeans){
 

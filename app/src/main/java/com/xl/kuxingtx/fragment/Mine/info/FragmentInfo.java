@@ -130,8 +130,11 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
                startActivity(new Intent(getActivity(), MyInfoActivity.class));
                break;
            case R.id.new_friend_btn:
+
                AnyLayer.with(this.getActivity())
                        .contentView(R.layout.new_friend_dialog)
+                       .backgroundBlurPercent(0.05f)
+                       .backgroundColorInt(getResources().getColor(R.color.dialog_blur_bg))
                        .gravity(Gravity.CENTER)
                        .onVisibleChangeListener(new LayerManager.OnVisibleChangeListener() {
                            @Override
@@ -244,6 +247,11 @@ public class FragmentInfo extends Fragment implements View.OnClickListener, FInf
     @Override
     public void onResume(){
         super.onResume();
+        initData();
+    }
+
+    //提供一个主动的调用刷新方法供注销登录后的刷新、
+    public void onUpdateReSignIn(){
         initData();
     }
 

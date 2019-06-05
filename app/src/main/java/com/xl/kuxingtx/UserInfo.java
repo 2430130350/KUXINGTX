@@ -87,8 +87,8 @@ public class UserInfo {
         }
     }
 
-    public List<NoteBean> delNoteBean(){
-
+    public List<NoteBean> delNoteBean(int position){
+        this.noteBeans.remove(position);
         return this.noteBeans;
     }
 

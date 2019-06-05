@@ -115,6 +115,14 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
                 }
             }
         });
+        trendsAdapter.setOnItemChildLongClickListener(new BaseQuickAdapter.OnItemChildLongClickListener() {
+            @Override
+            public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+                //长按删除、
+                arroundPresenter.delTrends(FragmentAround.this.trendsDatas.get(position));
+                return true;
+            }
+        });
 
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -165,6 +173,17 @@ public class FragmentAround extends Fragment implements View.OnClickListener, FA
         this.refreshLayout.finishRefresh(500);
         Toast.makeText(getActivity(), "刷新成功、", Toast.LENGTH_SHORT).show();
         this.trendsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void delTrendsSuccess() {
+        Toast.makeText(getActivity(), "删除成功、", Toast.LENGTH_SHORT).show();
+        initData();
+    }
+
+    @Override
+    public void delTrendsFailedNotMine() {
+        Toast.makeText(getActivity(), "不是您的动态呢、", Toast.LENGTH_SHORT).show();
     }
 
     @Override

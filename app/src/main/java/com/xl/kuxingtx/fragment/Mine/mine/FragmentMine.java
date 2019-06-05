@@ -141,6 +141,11 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
     }
 
     @Override
+    public void loginFailed() {
+        Toast.makeText(getActivity(), "登录失败了呢、请检查用户名密码、", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void registerSuccess() {
         //弹回登录界面、要求重新登录、
         Toast.makeText(getActivity(), "注册成功、请输入登录、", Toast.LENGTH_SHORT).show();
@@ -148,6 +153,11 @@ public class FragmentMine extends Fragment implements  View.OnClickListener, FMi
         input_password.setText("");
         reinput_password.setText("");
 
+    }
+
+    @Override
+    public void registerFailed() {
+        Toast.makeText(getActivity(), "注册失败了呢、请检查网络连接、", Toast.LENGTH_SHORT).show();
     }
 
     @Override

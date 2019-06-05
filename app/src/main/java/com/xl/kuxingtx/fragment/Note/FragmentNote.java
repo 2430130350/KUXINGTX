@@ -27,6 +27,7 @@ import com.xl.kuxingtx.activity.readTrends.ReadTrendsActivity;
 import com.xl.kuxingtx.fragment.Around.TrendsAdapter;
 import com.xl.kuxingtx.fragment.Around.TrendsBean;
 import com.xl.kuxingtx.fragment.Mine.info.FriendBean;
+import com.xl.kuxingtx.inter.FNoteMvp;
 import com.xl.kuxingtx.utils.CodeUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zzhoujay.richtext.RichText;
@@ -39,7 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ContentView(R.layout.fragment_fragment_note)//加载的xml文件
-public class FragmentNote extends Fragment implements View.OnClickListener{
+public class FragmentNote extends Fragment implements View.OnClickListener, FNoteMvp.View {
+    private FNoteMvp.Presenter notePresenter = new NotePresenter(this);
     @ViewInject(R.id.note_recycler)
     private RecyclerView note_recycler;
     @ViewInject(R.id.add_img)
@@ -130,6 +132,15 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
                 }
             }
         });
+        noteAdapter.setOnItemChildLongClickListener(new BaseQuickAdapter.OnItemChildLongClickListener() {
+            @Override
+            public boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position) {
+                //长按删除、
+                notePresenter.delNoteBean(position);
+                return false;
+            }
+        });
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -173,5 +184,17 @@ public class FragmentNote extends Fragment implements View.OnClickListener{
     public void onResume(){
         super.onResume();
         initData();
+    }
+
+    @Override
+    public void delNoteBeanSuccess() {
+        Toast.makeText(getActivity(), "删除成功、", Toast.LENGTH_SHORT).show();
+        List<NoteBean> tmpNoteBeans = UserInfo.getUserInfo().getNoteBeans();
+        this.noteDatas.clear();
+        for(int i = 0; i<tmpNoteBeans.size(); i++){
+            NoteBean tmpNoteBean = tmpNoteBeans.get(i);
+            this.noteDatas.add(tmpNoteBean);
+        }
+        noteAdapter.notifyDataSetChanged();
     }
 }
