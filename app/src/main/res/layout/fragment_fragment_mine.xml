@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/input_username"
         app:layout_constraintWidth_percent="0.6"
         app:vet_errorMessage="请检查输入、"
-        app:vet_regexp=".*"
+        app:vet_regexp="......+"
         app:vet_tipPosition="top" />
 
     <com.xuexiang.xui.widget.edittext.ValidatorEditText
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/input_password"
         app:layout_constraintWidth_percent="0.6"
         app:vet_errorMessage="请检查输入、"
-        app:vet_regexp=".*"
+        app:vet_regexp="......+"
         app:vet_tipPosition="top"
         android:visibility="gone"/>
 
